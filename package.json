@@ -6,7 +6,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "deploy": "yarn build && netlify deploy --prod"
   },
   "dependencies": {
     "@types/node": "^15.0.1",
