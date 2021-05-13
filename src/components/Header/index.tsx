@@ -24,8 +24,11 @@ const Header: NextPage = () => {
     }
   }, []);
 
+  // const logo = require("../../assets/pokedex.png");
+
   return (
     <Styled.Header>
+      {/* <img src={logo} alt="" /> */}
       <h1>Pokédex</h1>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <SearchInput name="nomePokemon" />

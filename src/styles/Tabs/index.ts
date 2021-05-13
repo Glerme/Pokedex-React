@@ -84,8 +84,10 @@ export const Content = styled.div`
     color: #4b0082;
     font-size: 1.8rem;
     animation: ${FadeInAnimation} 0.5s;
-    & > span {
-      color: var(--text-primary);
+    & > div {
+      & > span {
+        color: var(--text-primary);
+      }
     }
   }
 `;
