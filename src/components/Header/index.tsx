@@ -20,15 +20,12 @@ const Header: NextPage = () => {
       const slug = input.nomePokemon.toLowerCase();
       router.push(`/pokemon/${slug}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, []);
 
-  // const logo = require("../../assets/pokedex.png");
-
   return (
     <Styled.Header>
-      {/* <img src={logo} alt="" /> */}
       <h1>Pokédex</h1>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <SearchInput name="nomePokemon" />
