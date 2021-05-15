@@ -1,9 +1,0 @@
-[build]
-  command = "yarn build"
-  build = "build"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[[plugins]]
-  package = "netlify-plugin-cache-nextjs"

@@ -5,12 +5,16 @@ export const ContainerCardEvolution = styled.div`
   justify-content: center;
   align-items: center;
 
-  flex-wrap: wrap;
-
   @media (max-width: 800px) {
     justify-content: left;
 
     flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 801px) {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   & > div {
@@ -23,8 +27,18 @@ export const ContainerCardEvolution = styled.div`
       & > img {
         margin: 1rem;
 
-        width: 286px;
-        height: 286px;
+        max-width: 286px;
+        max-height: 286px;
+
+        @media (max-width: 799px) {
+          width: 180px;
+          height: 180px;
+        }
+
+        @media (min-width: 800px) {
+          width: 230px;
+          height: 230px;
+        }
       }
     }
 
@@ -35,6 +49,7 @@ export const ContainerCardEvolution = styled.div`
         justify-content: left;
         flex-direction: column;
       }
+
       & > p {
         font-size: 1.5rem;
         text-transform: capitalize;
@@ -49,50 +64,4 @@ export const ContainerCardEvolution = styled.div`
       }
     }
   }
-
-  /* & > header {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-
-    @media (max-width: 800px) {
-      justify-content: left;
-
-      flex-direction: column;
-    }
-
-    & > div {
-      margin: 1rem;
-      & > img {
-        width: 100%;
-        justify-content: center;
-        padding: 1rem;
-      }
-    }
-  }
-
-  & > footer {
-    display: flex;
-    justify-content: space-around;
-
-    & > div {
-      & > p {
-        font-size: 1.5rem;
-        text-transform: capitalize;
-
-        margin-bottom: 0.2rem;
-        color: var(--text-third);
-      }
-
-      & > span {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-      }
-    }
-
-    @media (max-width: 715px) {
-      justify-content: left;
-      flex-direction: column;
-    }
-  } */
 `;

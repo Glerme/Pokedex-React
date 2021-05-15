@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InputSearchContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 
   position: relative;
@@ -40,7 +40,7 @@ export const InputSearchContainer = styled.div`
       border-image: linear-gradient(
         to right,
         var(--text-third),
-        var(--text-secondary)
+        var(--text-primary)
       );
       border-image-slice: 1;
     }
@@ -59,7 +59,8 @@ export const InputSearchContainer = styled.div`
   & > label {
     position: absolute;
     top: 0;
-    display: block;
+    display: flex;
+    justify-content: left;
     transition: 0.2s;
     font-size: 1.175rem;
     font-weight: 600;
@@ -77,7 +78,7 @@ export const InputSearchContainer = styled.div`
       transition: fill 0.5s;
 
       &:hover {
-        fill: red;
+        fill: var(--text-third);
       }
     }
   }

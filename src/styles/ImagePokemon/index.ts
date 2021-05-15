@@ -26,12 +26,17 @@ export const ContainerImage = styled.div<ContainerImageProps>`
   margin-top: 2rem;
   border-radius: 15px;
 
-  width: 35rem;
-  height: 35rem;
+  width: 30rem;
+  height: 30rem;
 
   animation: ${FadeInAnimation} 0.5s ease-in-out;
 
   box-shadow: 1px 2px 8px black;
+
+  @media (max-width: 800px) {
+    width: 20rem;
+    height: 20rem;
+  }
 
   & div {
     position: relative;
