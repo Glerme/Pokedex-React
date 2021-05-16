@@ -6,13 +6,14 @@ import * as Styled from "../../styles/Tabs";
 import { Status } from "../../types/PokemonTypes";
 
 import Evolutions from "../Evolutions";
+import MegaEvolution from "../MegaEvolution";
 
 const Tabs: NextPage<Status> = ({
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
 }) => {
-  const types = ["Abilities", "Status", "Evolutions"];
+  const types = ["Abilities", "Status", "Evolutions", "Mega-Evolution"];
   const [active, setActive] = useState(types[0]);
 
   return (
@@ -62,6 +63,13 @@ const Tabs: NextPage<Status> = ({
         )}
 
         {active === types[2] && <Evolutions pokemonData={pokemonData} />}
+
+        {active === types[3] && (
+          <MegaEvolution
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+          />
+        )}
       </Styled.ContainerStatus>
     </>
   );

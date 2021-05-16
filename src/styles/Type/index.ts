@@ -20,18 +20,34 @@ const FadeInAnimation = keyframes`
 `;
 
 export const ContainerTypes = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @media (min-width: 701px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  margin-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    margin: 1rem;
+    flex-direction: column;
+  }
 
   animation: ${FadeInAnimation} 0.5s ease-in-out;
+
+  & > div {
+    display: flex;
+  }
 `;
 
 export const TypeOne = styled.p<ColorPropsPrimary>`
+  background-color: ${(props) => `var(--${props.tipo1})`};
+  color: white;
+
   margin: 0 1rem;
   padding: 1.5rem 5rem;
+
+  width: 100%;
 
   border: 1px solid ${(props) => `var(--${props.tipo1})`};
   border-radius: 1rem;
@@ -40,10 +56,18 @@ export const TypeOne = styled.p<ColorPropsPrimary>`
   font-weight: 700;
   text-transform: capitalize;
 
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  background-color: ${(props) => `var(--${props.tipo1})`};
-  color: white;
+  & > img {
+    width: 3rem;
+    margin-right: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    margin: 1rem;
+  }
 `;
 
 export const TypeTwo = styled.p<ColorPropsSecondary>`
@@ -55,11 +79,19 @@ export const TypeTwo = styled.p<ColorPropsSecondary>`
 
   font-size: 1.5rem;
   font-weight: 700;
-
   text-transform: capitalize;
 
   width: 100%;
 
   background-color: ${(props) => `var(--${props.tipo2})`};
   color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > img {
+    width: 3rem;
+    margin-right: 2rem;
+  }
 `;

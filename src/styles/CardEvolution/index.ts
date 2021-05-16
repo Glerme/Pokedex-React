@@ -27,12 +27,12 @@ export const ContainerCardEvolution = styled.div`
       & > img {
         margin: 1rem;
 
-        max-width: 286px;
-        max-height: 286px;
+        max-width: 400px;
+        max-height: 400px;
 
         @media (max-width: 799px) {
-          width: 180px;
-          height: 180px;
+          /* width: 180px; */
+          /* height: 180px; */
         }
 
         @media (min-width: 800px) {
@@ -56,11 +56,23 @@ export const ContainerCardEvolution = styled.div`
 
         margin-bottom: 0.2rem;
         color: var(--text-third);
+
+        @media (max-width: 800px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
 
       & > span {
         font-size: 1.1rem;
         color: var(--text-secondary);
+
+        @media (max-width: 800px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }

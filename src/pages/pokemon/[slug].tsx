@@ -6,7 +6,7 @@ import StatusPokemon from "../../components/StatusPokemon";
 import ImagePokemon from "../../components/ImagePokemon";
 import Header from "../../components/Header";
 
-import { getPokemonImage } from "../../utils/chainEvo";
+import { getPokemonImage } from "../../utils/getPokemonImages";
 
 import * as Styled from "../../styles/Home";
 
@@ -89,17 +89,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   });
 
   const formatedAbilities = formatAbilities(pokemonData.abilities);
-
-  let evolucao = null;
-
-  try {
-    const { data } = await api.get(
-      `/evolution-chain/${pokemonData.species.url}`
-    );
-    evolucao = data;
-  } catch (err) {
-    evolucao = null;
-  }
 
   return {
     props: {

@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --fairy: #fdb9e9;
     --fire: #fd7d24;
     --ghost: #7c62a3;
-    --ground: #f5deb3;
+    --ground: #ccb995;
     --normal: #a4acaf;
     --psychic: #f366b9;
     --steel: #9eb7b8;

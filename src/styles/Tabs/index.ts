@@ -55,7 +55,7 @@ export const ButtonGroup = styled.div`
   justify-content: left;
   align-items: center;
 
-  @media (max-width: 715px) {
+  @media (max-width: 900px) {
     justify-content: left;
 
     flex-direction: column;
@@ -67,13 +67,25 @@ export const ButtonGroup = styled.div`
 `;
 
 export const Content = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   flex-wrap: wrap;
 
   margin: 5rem auto;
+
+  @media (max-width: 730px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  @media (min-width: 731px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 900px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   & > p {
     margin: 0.8rem 2rem;

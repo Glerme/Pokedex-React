@@ -1,10 +1,5 @@
 import { Evolucao } from "../types/PokemonTypes";
-
-const makeURL = (id: string) =>
-  new URL(process.env.IMAGE_API_URL + id + ".png").href;
-
-export const getPokemonImage = (id: number) =>
-  id < 100 ? makeURL(id.toString().padStart(3, "0")) : makeURL(id.toString());
+import { getPokemonImage } from "./getPokemonImages";
 
 const getPokemonSpecies = (name: string, url: string) => {
   const id = Number(url.replace(/^.*\/(\d+)\/?$/g, "$1"));
