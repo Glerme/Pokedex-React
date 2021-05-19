@@ -23,8 +23,6 @@ export interface CardInicialData {
 const CardInicial: NextPage = () => {
   const [pokes, setPokes] = useState<CardInicialData[]>([]);
 
-  const infinite = useRef();
-
   const getPokemon = useCallback(async () => {
     const pokemons = await fetchPokemons(0);
 
@@ -47,8 +45,6 @@ const CardInicial: NextPage = () => {
         {pokes.map((pok, index) => (
           <CardInicialUnico pokes={pok} key={index} />
         ))}
-
-        <div ref={infinite} onClick={() => fetchMorePokemons()} />
       </Styled.Container>
     </>
   );

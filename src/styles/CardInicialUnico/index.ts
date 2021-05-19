@@ -5,7 +5,7 @@ interface ColorPropsPrimary {
   tipo2?: string;
 }
 
-export const ContainerCard = styled.div<ColorPropsPrimary>`
+export const ContainerCard = styled.a<ColorPropsPrimary>`
   padding: 1rem;
   margin: 1rem;
 
@@ -14,51 +14,63 @@ export const ContainerCard = styled.div<ColorPropsPrimary>`
 
   width: 250px;
 
+  cursor: pointer;
+
   border-radius: 10px;
 
-  & > a {
+  &:hover {
+    background-color: ${(props) => `var(--${props.tipo1})`};
+
+    transition: all 0.5s;
+
     & > header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
       & > h3 {
-        text-transform: capitalize;
-        line-height: 1.4;
-        color: var(--text-third);
-
-        margin-bottom: 1rem;
-        padding-bottom: 0.3rem;
-
-        width: 100%;
+        color: white;
+      }
+      p {
+        color: white;
       }
     }
+  }
 
-    & > main {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  & > header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      & > img {
-        width: 200px;
-        height: 200px;
-      }
+    & > h3 {
+      text-transform: capitalize;
+      line-height: 1.4;
+      color: var(--text-third);
+
+      margin-bottom: 1rem;
+      padding-bottom: 0.3rem;
+
+      width: 100%;
     }
-
-    & > footer {
-      display: flex;
-
-      justify-content: center;
-
-      margin-top: 1rem;
-      padding-top: 0.3rem;
-
-      & > p {
-        font-size: 1.2rem;
-
-        color: var(--text-primary);
-      }
+    p {
+      color: var(--text-secondary);
     }
+  }
+
+  & > main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  & > footer {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 1rem;
+    padding-top: 0.3rem;
   }
 `;
 
@@ -69,6 +81,7 @@ export const Tipos = styled.div<ColorPropsPrimary>`
   padding: 3px;
 
   border-radius: 5px;
+  border: 1px solid ${(props) => `var(--${props.tipo1})`};
 
   margin: 0.3rem;
 
