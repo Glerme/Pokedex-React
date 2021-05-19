@@ -35,8 +35,6 @@ const Pokemon: NextPage<PokemonProps> = ({
   pokemonStatus,
   pokemonAbilities,
 }) => {
-  const [pokemon, setPokemon] = useState({});
-
   return (
     <>
       <Head>

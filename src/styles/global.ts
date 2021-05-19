@@ -25,7 +25,10 @@ const GlobalStyle = createGlobalStyle`
     --text-primary: #4d4b46;
     --text-secondary: #a1a1a1;
     --text-third: #4b0082;
-    --background-primary: #e5e5e5
+    --background-primary: #e5e5e5;
+    --background-secondary:#f2f2f2;
+    --shadow: #c2c2c2;
+
     }
 
 
@@ -49,6 +52,16 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         max-width: 900px;
     }
+
+    a{
+        text-decoration: none;
+    }
+
+    a:-webkit-any-link {
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
 `;
 
 export default GlobalStyle;

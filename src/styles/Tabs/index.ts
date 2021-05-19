@@ -21,7 +21,7 @@ export const ContainerStatus = styled.div`
   min-height: 50%;
 
   background-color: white;
-  box-shadow: 3px 2px 4px #c2c2c2;
+  box-shadow: 3px 2px 4px var(--shadow);
 
   animation: ${FadeInAnimation} 0.5s ease-in-out;
 `;
@@ -93,7 +93,7 @@ export const Content = styled.div`
     text-transform: capitalize;
     text-align: center;
     line-height: 1.4;
-    color: #4b0082;
+    color: var(--text-third);
     font-size: 1.8rem;
     animation: ${FadeInAnimation} 0.5s;
     & > div {

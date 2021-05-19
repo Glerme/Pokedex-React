@@ -6,6 +6,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Pokedex</title>
+        <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
       </Head>
       <GlobalStyle />
       <Component {...pageProps} />

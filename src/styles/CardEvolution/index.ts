@@ -30,11 +30,6 @@ export const ContainerCardEvolution = styled.div`
         max-width: 400px;
         max-height: 400px;
 
-        @media (max-width: 799px) {
-          /* width: 180px; */
-          /* height: 180px; */
-        }
-
         @media (min-width: 800px) {
           width: 230px;
           height: 230px;

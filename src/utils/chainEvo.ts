@@ -1,7 +1,7 @@
 import { Evolucao } from "../types/PokemonTypes";
 import { getPokemonImage } from "./getPokemonImages";
 
-const getPokemonSpecies = (name: string, url: string) => {
+export const getPokemonSpecies = (name: string, url: string) => {
   const id = Number(url.replace(/^.*\/(\d+)\/?$/g, "$1"));
 
   const imageURL = getPokemonImage(id);

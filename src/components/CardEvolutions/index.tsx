@@ -9,8 +9,8 @@ interface CardEvolutionsData {
 const CardEvolutions: NextPage<CardEvolutionsData> = ({ nameImgPokemon }) => {
   return (
     <Styled.ContainerCardEvolution>
-      {nameImgPokemon.map((pokemon) => (
-        <div>
+      {nameImgPokemon.map((pokemon, index) => (
+        <div key={index}>
           <header>
             <img src={pokemon.url} alt={pokemon.name} />
           </header>
