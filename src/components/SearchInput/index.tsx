@@ -1,5 +1,6 @@
-import { InputHTMLAttributes, useEffect, useRef } from "react";
+import { InputHTMLAttributes, useEffect, useRef, useState } from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 import { useField } from "@unform/core";
 
@@ -32,7 +33,7 @@ const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Styled.InputSearchContainer>
+    <Styled.SearchContainer>
       <input
         name={name}
         placeholder="Buscar"
@@ -44,7 +45,7 @@ const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
       <button type="submit">
         <ImSearch size={24} />
       </button>
-    </Styled.InputSearchContainer>
+    </Styled.SearchContainer>
   );
 };
 

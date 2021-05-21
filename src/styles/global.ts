@@ -36,8 +36,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Lato', sans-serif;
-
+        font-family: 'Titillium Web', sans-serif;
     }
 
     html, body, div#__next {
@@ -51,6 +50,11 @@ const GlobalStyle = createGlobalStyle`
         width: 100%;
         height: 100%;
         max-width: 900px;
+    }
+
+    button{
+        cursor: pointer;
+
     }
 
     a{

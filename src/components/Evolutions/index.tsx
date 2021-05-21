@@ -12,7 +12,7 @@ import CardEvolutions from "../CardEvolutions";
 
 import * as Styled from "../../styles/Evolution";
 
-interface nameImgPokemon {
+export interface nameImgPokemon {
   id: number;
   name: string;
   url: string;

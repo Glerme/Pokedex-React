@@ -1,12 +1,13 @@
 import { NextPage } from "next";
 
 import * as Styled from "../../styles/CardEvolution";
+import { nameImgPokemon } from "../Evolutions";
 
-interface CardEvolutionsData {
-  nameImgPokemon: any[];
+export interface CardEvolutions {
+  nameImgPokemon: nameImgPokemon[];
 }
 
-const CardEvolutions: NextPage<CardEvolutionsData> = ({ nameImgPokemon }) => {
+const CardEvolutions: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
   return (
     <Styled.ContainerCardEvolution>
       {nameImgPokemon.map((pokemon, index) => (

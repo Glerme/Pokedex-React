@@ -1,25 +1,35 @@
 import styled from "styled-components";
 
-export const InputSearchContainer = styled.div`
+export const SearchContainer = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-
+  width: 100%;
   position: relative;
 
-  margin: 1rem auto;
-  width: 50%;
-  padding: 0.5rem;
+  & > label {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: left;
+    transition: 0.2s;
+    font-size: 1.175rem;
+    font-weight: 600;
+    color: #c3c3c3;
+  }
 
   & > input {
     width: 100%;
     border: 0;
-    border-bottom: 2px solid #bebebe;
+    border-bottom: 2px solid white;
     outline: 0;
-    font-size: 1rem;
-    color: var(--text-third);
+    font-size: 1.6rem;
+    color: white;
     padding: 1rem 0 0.5rem 0;
     background: transparent;
+
+    display: flex;
+    justify-content: center;
 
     &:-webkit-autofill {
       box-shadow: 0 0 0 30px var(--background-primary) inset;
@@ -32,16 +42,13 @@ export const InputSearchContainer = styled.div`
     &:placeholder-shown ~ label {
       cursor: text;
       top: 1.175rem;
+      color: #dbdbdb;
     }
 
     &:focus {
       padding-bottom: 6px;
-      border-width: 3px;
-      border-image: linear-gradient(
-        to right,
-        var(--text-third),
-        var(--text-primary)
-      );
+      border-width: 2px;
+      border-image: red;
       border-image-slice: 1;
     }
 
@@ -52,19 +59,8 @@ export const InputSearchContainer = styled.div`
       transition: 0.2s;
       font-size: 1.075rem;
       font-weight: 600;
-      color: #4d4b46;
+      color: white;
     }
-  }
-
-  & > label {
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: left;
-    transition: 0.2s;
-    font-size: 1.175rem;
-    font-weight: 600;
-    color: var(--text-secondary);
   }
 
   & > button {
@@ -74,7 +70,7 @@ export const InputSearchContainer = styled.div`
     padding: 0 0.5rem;
 
     & > svg {
-      fill: #a6a6a6;
+      fill: white;
       transition: fill 0.5s;
 
       &:hover {

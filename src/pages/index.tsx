@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import { NextPage } from "next";
 

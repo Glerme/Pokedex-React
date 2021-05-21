@@ -7,12 +7,11 @@ interface ColorPropsPrimary {
 
 export const ContainerCard = styled.a<ColorPropsPrimary>`
   padding: 1rem;
-  margin: 1rem;
 
   background-color: #f2f2f2;
   box-shadow: 3px 2px 4px var(--shadow);
 
-  width: 250px;
+  width: 100%;
 
   cursor: pointer;
 
@@ -35,18 +34,15 @@ export const ContainerCard = styled.a<ColorPropsPrimary>`
 
   & > header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
 
+    width: 100%;
     & > h3 {
       text-transform: capitalize;
       line-height: 1.4;
       color: var(--text-third);
-
-      margin-bottom: 1rem;
-      padding-bottom: 0.3rem;
-
-      width: 100%;
     }
     p {
       color: var(--text-secondary);
@@ -66,11 +62,28 @@ export const ContainerCard = styled.a<ColorPropsPrimary>`
 
   & > footer {
     display: flex;
-
     justify-content: center;
-
     margin-top: 1rem;
-    padding-top: 0.3rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.875rem;
+
+    & > main > img {
+      width: 150px;
+      height: 150px;
+    }
+
+    & > footer {
+      margin-top: 0.7rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    & > main > img {
+      width: 220px;
+      height: 220px;
+    }
   }
 `;
 
@@ -88,4 +101,9 @@ export const Tipos = styled.div<ColorPropsPrimary>`
   width: 5rem;
   height: 2.5rem;
   background-color: ${(props) => `var(--${props.tipo1})`};
+
+  @media (max-width: 420px) {
+    width: inherit;
+    height: 3rem;
+  }
 `;

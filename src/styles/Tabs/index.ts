@@ -34,6 +34,7 @@ export const Tab = styled.button<{ active: boolean }>`
   flex-wrap: wrap;
 
   font-size: 1rem;
+  font-weight: 600;
   padding: 10px 50px;
   cursor: pointer;
   opacity: 0.6;
