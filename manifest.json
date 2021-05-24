@@ -1,0 +1,17 @@
+{
+  "name": "Pokédex",
+  "short_name": "Pokédex",
+  "theme_color": "rgba(5,5,5,0.5)",
+  "background_color": "#e5e5e5",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "images/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ]
+}

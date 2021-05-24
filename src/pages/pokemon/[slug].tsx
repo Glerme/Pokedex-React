@@ -20,7 +20,6 @@ import {
   PokemonData,
   PokemonStatusProps,
 } from "../../types/PokemonTypes";
-import { useState } from "react";
 import Head from "next/head";
 
 interface PokemonProps {
