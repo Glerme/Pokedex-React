@@ -7,11 +7,12 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Pokedex</title>
 
+        <meta lang="pt-BR" />
         <meta charSet="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5,user-scalable=no"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5,user-scalable=yes"
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
