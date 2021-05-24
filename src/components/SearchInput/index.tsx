@@ -42,7 +42,7 @@ const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
         {...rest}
       />
       <label htmlFor={name}>Buscar</label>
-      <button type="submit">
+      <button type="submit" aria-label="Buscar">
         <ImSearch size={24} />
       </button>
     </Styled.SearchContainer>

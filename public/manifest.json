@@ -9,8 +9,18 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "https://pokedexreact.vercel.app/android-chrome-512x512.png",
+      "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable_icon.png",
+      "sizes": "320x320",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "48x48",
       "type": "image/png"
     }
   ],

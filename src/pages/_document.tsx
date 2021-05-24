@@ -38,22 +38,11 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Pokedex</title>
           <link rel="manifest" href="/manifest.json" />
-          <meta name="theme-color" content="#e5e5e5" />
 
           <link rel="apple-touch-icon" href="/logo-96x96.png" />
-          <meta name="apple-mobile-web-app-status-bar" content="#e5e5e5" />
 
           <link rel="shortcut icon" href="logo.svg" type="image/x-icon" />
-          <meta charSet="utf-8" />
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-          />
-          <meta name="description" content="Description" />
-          <meta name="keywords" content="Keywords" />
 
           <link rel="preconnect" href="https://fonts.gstatic.com" />
 
