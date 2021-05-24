@@ -39,6 +39,8 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <title>Pokedex</title>
+          <link rel="manifest" href="/manifest.json" />
+
           <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
           <meta charSet="utf-8" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
