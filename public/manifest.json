@@ -1,7 +1,7 @@
 {
   "name": "Pokédex",
   "short_name": "Pokédex",
-  "theme_color": "rgba(5,5,5,0.5)",
+  "theme_color": "#e5e5e5",
   "background_color": "#e5e5e5",
   "display": "fullscreen",
   "orientation": "portrait-primary",
@@ -16,7 +16,8 @@
     {
       "src": "/maskable_icon.png",
       "sizes": "320x320",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/apple-touch-icon.png",
