@@ -51,6 +51,9 @@ export default class MyDocument extends Document {
           <meta name="description" content="Description" />
           <meta name="keywords" content="Keywords" />
 
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="mobile-web-app-capable" content="yes" />
+
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
 
           <link rel="preconnect" href="https://fonts.gstatic.com" />

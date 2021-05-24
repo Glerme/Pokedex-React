@@ -1,17 +1,21 @@
 {
   "name": "Pokédex",
   "short_name": "Pokédex",
-  "theme_color": "#e5e5e5",
+  "theme_color": "rgba(5,5,5,0.5)",
   "background_color": "#e5e5e5",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
   "icons": [
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "https://pokedexreact.vercel.app/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "url": "https://pokedexreact.vercel.app",
+  "manifestUrl": "https://pokedexreact.vercel.app/manifest.json",
+  "lang": "",
+  "description": "Uma Pokédex feita em React."
 }
