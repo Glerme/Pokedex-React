@@ -3,8 +3,8 @@
   "short_name": "Pokédex",
   "theme_color": "rgba(5,5,5,0.5)",
   "background_color": "#e5e5e5",
-  "display": "standalone",
-  "orientation": "portrait",
+  "display": "fullscreen",
+  "orientation": "portrait-primary",
   "scope": "/",
   "start_url": "/",
   "icons": [

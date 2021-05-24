@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <title>Pokedex</title>
-          <link rel="manifest" href="/manifest.json" />
+          <link rel="manifest" href="../manifest.json" />
 
           <link rel="shortcut icon" href="logo.svg" type="image/x-icon" />
           <meta charSet="utf-8" />
