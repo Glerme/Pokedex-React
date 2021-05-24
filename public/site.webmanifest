@@ -13,7 +13,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "rgba(5,5,5,0.5)",
+  "theme_color": "#e5e5e5",
   "background_color": "#e5e5e5",
-  "display": "fullscreen"
+  "display": "standalone",
+  "orientation": "portrait"
 }
