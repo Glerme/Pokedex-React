@@ -42,7 +42,7 @@ const Pokemon: NextPage<PokemonProps> = ({
         </title>
       </Head>
       <Header />
-      {pokemonData ? (
+      {pokemonData && (
         <>
           <Styled.ContainerCardPokemon>
             <NamePokemon name={pokemonData.name} id={pokemonData.id} />
@@ -62,8 +62,6 @@ const Pokemon: NextPage<PokemonProps> = ({
             pokemonData={pokemonData}
           />
         </>
-      ) : (
-        ""
       )}
     </>
   );

@@ -12,6 +12,7 @@ import SearchInput from "../SearchInput";
 import { MdArrowBack } from "react-icons/md";
 
 import * as Styled from "../../styles/Header";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Header: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
@@ -33,6 +34,7 @@ const Header: NextPage = () => {
       return setBack(true);
     }
   }, []);
+
   return (
     <Styled.Header>
       <section>
@@ -42,7 +44,13 @@ const Header: NextPage = () => {
             <p>Voltar</p>
           </div>
         )}
-        <img src="/logo.svg" alt="Logo" />
+        <LazyLoadImage
+          alt="Logo"
+          src="/logo.svg"
+          key="logo"
+          placeholderSrc="Logo"
+          effect="blur"
+        />
       </section>
 
       <Form ref={formRef} onSubmit={handleSubmit}>

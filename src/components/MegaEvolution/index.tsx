@@ -1,7 +1,5 @@
 import { NextPage } from "next";
 
-import { makeURlMega } from "../../utils/getPokemonImages";
-
 import MegaEvolutionCard from "../MegaEvolutionCard";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";

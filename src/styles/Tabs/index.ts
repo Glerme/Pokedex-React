@@ -88,7 +88,7 @@ export const Content = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  & > p {
+  & > div {
     margin: 0.8rem 2rem;
     padding: 0.4rem;
     text-transform: capitalize;
@@ -97,7 +97,7 @@ export const Content = styled.div`
     color: var(--text-third);
     font-size: 1.8rem;
     animation: ${FadeInAnimation} 0.5s;
-    & > div {
+    & > p {
       & > span {
         color: var(--text-primary);
       }

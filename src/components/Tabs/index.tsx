@@ -35,15 +35,15 @@ const Tabs: NextPage<Status> = ({
           <Styled.Content>
             {pokemonAbilities &&
               pokemonAbilities.map(({ key, abilities }) => (
-                <p key={key}>
+                <div key={key}>
                   {key}
                   {abilities.map((ability, index) => (
-                    <div key={index}>
+                    <p key={index}>
                       <br />
                       <span>{ability}</span>
-                    </div>
+                    </p>
                   ))}
-                </p>
+                </div>
               ))}
           </Styled.Content>
         )}
@@ -52,12 +52,12 @@ const Tabs: NextPage<Status> = ({
           <Styled.Content>
             {pokemonStatus &&
               pokemonStatus.map((status, index) => (
-                <p key={index}>
+                <div key={index}>
                   {status.key} <br />
-                  <div>
+                  <p>
                     <span>{status.value}</span>
-                  </div>
-                </p>
+                  </p>
+                </div>
               ))}
           </Styled.Content>
         )}

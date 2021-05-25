@@ -43,6 +43,15 @@ export const ContainerImage = styled.div<ContainerImageProps>`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    & > span {
+      margin: 0.1rem;
+      padding: 0.5rem;
+
+      z-index: 5;
+
+      animation: ${FadeInAnimation} 0.5s ease-in-out;
+    }
   }
 
   & div > div {
@@ -54,14 +63,7 @@ export const ContainerImage = styled.div<ContainerImageProps>`
     border-radius: 100%;
     background-color: white;
     opacity: 0.5;
-  }
 
-  & div > img {
-    width: 100%;
-    margin: 0.1rem;
-    padding: 0.5rem;
-    z-index: 50;
-
-    animation: ${FadeInAnimation} 0.5s ease-in-out;
+    z-index: 1;
   }
 `;

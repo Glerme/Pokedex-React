@@ -1,8 +1,10 @@
 import { NextPage } from "next";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import * as Styled from "../../styles/CardEvolution";
 import { nameImgPokemon } from "../Evolutions";
 
+import * as Styled from "../../styles/CardEvolution";
+import "react-lazy-load-image-component/src/effects/blur.css";
 export interface CardEvolutions {
   nameImgPokemon: nameImgPokemon[];
 }
@@ -13,7 +15,13 @@ const CardEvolutions: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
       {nameImgPokemon.map((pokemon, index) => (
         <div key={index}>
           <header>
-            <img src={pokemon.url} alt={pokemon.name} />
+            <LazyLoadImage
+              alt={pokemon.name}
+              src={pokemon.url}
+              key={pokemon.id}
+              placeholderSrc={pokemon.name}
+              effect="blur"
+            />
           </header>
 
           <footer key={pokemon.id}>

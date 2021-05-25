@@ -15,7 +15,7 @@ export const Header = styled.header`
     align-items: center;
     justify-content: flex-start;
 
-    & > img {
+    & > span > img {
       width: 5rem;
     }
 

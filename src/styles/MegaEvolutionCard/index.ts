@@ -21,6 +21,12 @@ export const MegaEvolutionCardContainer = styled.div`
   min-height: 50%;
   animation: ${TranslateX} 0.5s ease-in-out;
 
+  & > p {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-top: 2.5rem;
+  }
+
   @media (max-width: 800px) {
     flex-direction: column;
     justify-content: center;
@@ -31,7 +37,9 @@ export const MegaEvolutionCardContainer = styled.div`
   }
 
   & > div {
-    & > img {
+    & > span {
+      width: 30rem;
+
       margin: 1rem;
 
       @media (max-width: 799px) {

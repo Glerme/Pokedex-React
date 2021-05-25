@@ -39,6 +39,8 @@ const CardInicial: NextPage = () => {
     getPokemon();
   }, []);
 
+  console.log("pokes", pokes);
+
   return (
     <>
       <Styled.Container>
@@ -46,6 +48,9 @@ const CardInicial: NextPage = () => {
           <CardInicialUnico pokes={pok} key={index} />
         ))}
       </Styled.Container>
+      <button onClick={() => fetchMorePokemons()}>
+        Clique para carregar mais Pokemons
+      </button>
     </>
   );
 };

@@ -36,13 +36,13 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="pt-BR">
         <Head>
           <link rel="manifest" href="/manifest.json" />
 
           <link rel="apple-touch-icon" href="/logo-96x96.png" />
 
-          <link rel="shortcut icon" href="logo.svg" type="image/x-icon" />
+          <link rel="shortcut icon" href="/logo.svg" type="image/x-icon" />
 
           <link rel="preconnect" href="https://fonts.gstatic.com" />
 

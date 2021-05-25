@@ -1,5 +1,8 @@
 import { NextPage } from "next";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+import "react-lazy-load-image-component/src/effects/blur.css";
 import * as Styled from "../../styles/ImagePokemon";
 
 interface ImagePokemonProps {
@@ -18,7 +21,14 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
     <Styled.ContainerImage bgColor={colorPkm} {...rest}>
       <div>
         <div></div>
-        <img src={idPokemonSprite} alt={name} />
+
+        <LazyLoadImage
+          alt={name}
+          src={idPokemonSprite}
+          key={idPokemonSprite}
+          placeholderSrc={name}
+          effect="blur"
+        />
       </div>
     </Styled.ContainerImage>
   );
