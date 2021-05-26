@@ -1,11 +1,14 @@
 import { NextPage } from "next";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import CardInicialUnico from "../CardInicialUnico";
 
-import * as Styled from "../../styles/CardInicial";
 import { fetchPokemons } from "../../utils/fetchPokemons";
 
+import { useLoader } from "../../hooks/loader";
+import Loader from "../Loader";
+
+import * as Styled from "../../styles/CardInicial";
 interface PokemonTypes {
   type: {
     name: string;
@@ -25,10 +28,18 @@ const CardInicial: NextPage = () => {
   const [pokePerPage, setPokePerPage] = useState(10);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const getPokemon = useCallback(async () => {
-    const pokemons = await fetchPokemons(0);
+  const { isLoader, removeLoader, addLoader } = useLoader();
 
-    setPokes(pokemons);
+  const getPokemon = useCallback(async () => {
+    try {
+      addLoader();
+      const pokemons = await fetchPokemons(0);
+      setPokes(pokemons);
+      removeLoader();
+    } catch (error) {
+      removeLoader();
+      console.error(error);
+    }
   }, []);
 
   useEffect(() => {
@@ -37,15 +48,28 @@ const CardInicial: NextPage = () => {
 
   const handleScroll = async () => {
     const position = window.pageYOffset;
-    var maxTop = document.body.scrollHeight - position;
+    const maxTop = document.body.scrollHeight;
 
-    console.log("position", position);
-    console.log("maxTop", maxTop);
+    const valorNovo = maxTop - position;
 
-    if (position > maxTop) {
-      const newPokemons = await fetchPokemons(pokes.length);
+    setScrollPosition(valorNovo);
 
-      setPokes([...pokes, ...newPokemons]);
+    console.log("position Atual", position);
+    console.log("Posiçao em relacao ao topo (MAXTOP)", maxTop);
+    console.log("valorNovo", valorNovo);
+
+    if (position > valorNovo) {
+      try {
+        addLoader();
+
+        const newPokemons = await fetchPokemons(pokes.length);
+        setPokes([...pokes, ...newPokemons]);
+
+        removeLoader();
+      } catch (error) {
+        removeLoader();
+        console.error(error);
+      }
     }
     setScrollPosition(position);
     const perPage = pokePerPage;
@@ -55,20 +79,26 @@ const CardInicial: NextPage = () => {
   useEffect(() => {
     window.addEventListener("wheel", handleScroll);
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("touchmove", handleScroll);
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("scroll", handleScroll);
+      window.addEventListener("touchmove", handleScroll);
     };
   }, [scrollPosition]);
 
   return (
     <>
-      <Styled.Container>
-        {pokes.map((pok, index) => (
-          <CardInicialUnico pokes={pok} key={index} />
-        ))}
-      </Styled.Container>
+      {isLoader ? (
+        <Loader />
+      ) : (
+        <Styled.Container>
+          {pokes.map((pok, index) => (
+            <CardInicialUnico pokes={pok} key={index} />
+          ))}
+        </Styled.Container>
+      )}
     </>
   );
 };

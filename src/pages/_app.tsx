@@ -1,8 +1,18 @@
 import Head from "next/head";
+import Router from "next/dist/next-server/lib/router/router";
+
+import { useState } from "react";
+
+import PageLoader from "../components/PageLoader";
 
 import GlobalStyle from "../styles/global";
 
 function MyApp({ Component, pageProps }) {
+  const [isPageLoader, setIsPageLoader] = useState(false);
+
+  Router.events.on("routeChangeStart", () => setIsPageLoader(true));
+  Router.events.on("routeChangeComplete", () => setIsPageLoader(false));
+
   return (
     <>
       <Head>
@@ -21,8 +31,9 @@ function MyApp({ Component, pageProps }) {
         <meta name="apple-mobile-web-app-status-bar" content="#e5e5e5" />
         <meta name="theme-color" content="#e5e5e5" />
       </Head>
-      <GlobalStyle />
 
+      <GlobalStyle />
+      {isPageLoader && <PageLoader />}
       <Component {...pageProps} />
     </>
   );

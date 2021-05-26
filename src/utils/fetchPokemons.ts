@@ -1,11 +1,10 @@
-import { useCallback } from "react";
 import { api } from "../services/api";
 import { getPokemonTypesAll } from "./AllPokemonsTypes";
 import { getPokemonSpecies } from "./chainEvo";
 
 export const fetchPokemons = async (offset: number) => {
   const { data: pokemons } = await api.get(
-    `/pokemon?offset=${offset}&limit=30`
+    `/pokemon?offset=${offset}&limit=50`
   );
 
   const parsed = pokemons.results.map((res) => {
@@ -22,10 +21,4 @@ export const fetchPokemons = async (offset: number) => {
       types: types[index],
     };
   });
-};
-
-export const fetchMorePokemons = async (pokes) => {
-  const newPokemons = await fetchPokemons(pokes.length);
-
-  return await [...pokes, ...newPokemons];
 };

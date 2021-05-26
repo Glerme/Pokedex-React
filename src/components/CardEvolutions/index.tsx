@@ -5,6 +5,7 @@ import { nameImgPokemon } from "../Evolutions";
 
 import * as Styled from "../../styles/CardEvolution";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useLoader } from "../../hooks/loader";
 export interface CardEvolutions {
   nameImgPokemon: nameImgPokemon[];
 }

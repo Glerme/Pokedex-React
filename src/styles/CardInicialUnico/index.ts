@@ -20,7 +20,7 @@ export const ContainerCard = styled.a<ColorPropsPrimary>`
   &:hover {
     background-color: ${(props) => `var(--${props.tipo1})`};
 
-    transition: all 0.5s;
+    transition: all 0.8s;
 
     & > header {
       & > h3 {
