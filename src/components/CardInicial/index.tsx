@@ -54,8 +54,12 @@ const CardInicial: NextPage = () => {
 
   useEffect(() => {
     window.addEventListener("wheel", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("wheel", handleScroll);
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [scrollPosition]);
 
   return (
