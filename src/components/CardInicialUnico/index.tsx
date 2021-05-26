@@ -24,24 +24,16 @@ const CardInicialUnico: NextPage<Card> = ({ pokes }) => {
           <p>#{pokes?.id?.toString().padStart(3, "0")}</p>
         </header>
         <main>
-          <LazyLoadImage
-            alt={pokes.name}
-            src={pokes.url}
-            key={pokes.id}
-            placeholderSrc={pokes.name}
-            effect="blur"
-          />
+          <img src={pokes.url} alt={pokes.name} srcSet={pokes.url} />
         </main>
         <footer>
           {pokes.types &&
             pokes.types.map(({ type }, index) => (
               <Styled.Tipos key={index} tipo1={type.name}>
-                <LazyLoadImage
-                  alt={type.name}
+                <img
                   src={getImageType(type.name)}
-                  key={type.name}
-                  placeholderSrc={type.name}
-                  effect="blur"
+                  alt={type.name}
+                  srcSet={getImageType(type.name)}
                 />
               </Styled.Tipos>
             ))}

@@ -44,7 +44,7 @@ export const ContainerImage = styled.div<ContainerImageProps>`
     align-items: center;
     justify-content: center;
 
-    & > span {
+    & > img {
       margin: 0.1rem;
       padding: 0.5rem;
 

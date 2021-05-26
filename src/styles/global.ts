@@ -40,9 +40,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html, body, div#__next {
-        width: 100vw;
-        height: 100vh;
-        overflow-x: hidden;
         background-color: var(--background-primary);
     }
 
@@ -54,7 +51,6 @@ const GlobalStyle = createGlobalStyle`
 
     button{
         cursor: pointer;
-
     }
 
     a{

@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 import GlobalStyle from "../styles/global";
 
 function MyApp({ Component, pageProps }) {
@@ -21,6 +22,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#e5e5e5" />
       </Head>
       <GlobalStyle />
+
       <Component {...pageProps} />
     </>
   );

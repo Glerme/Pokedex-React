@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { api } from "../services/api";
 import { getPokemonTypesAll } from "./AllPokemonsTypes";
 import { getPokemonSpecies } from "./chainEvo";
@@ -21,4 +22,10 @@ export const fetchPokemons = async (offset: number) => {
       types: types[index],
     };
   });
+};
+
+export const fetchMorePokemons = async (pokes) => {
+  const newPokemons = await fetchPokemons(pokes.length);
+
+  return await [...pokes, ...newPokemons];
 };

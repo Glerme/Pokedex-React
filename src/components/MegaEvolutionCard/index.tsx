@@ -35,13 +35,8 @@ const MegaEvolutionCard: NextPage<EvolutionProps> = ({ id, name }) => {
       {megaEvolutionsURLs.length > 0 ? (
         megaEvolutionsURLs.map((evolutionURL, index) => (
           <div key={index}>
-            <LazyLoadImage
-              alt={name}
-              src={evolutionURL}
-              key={id}
-              placeholderSrc={name}
-              effect="blur"
-            />
+            <img alt={name} src={evolutionURL} srcSet={evolutionURL} />
+
             <p>Mega {name}</p>
             <span>#{id.padStart(3, "0")}</span>
           </div>

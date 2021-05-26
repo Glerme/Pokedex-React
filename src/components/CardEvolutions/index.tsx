@@ -15,13 +15,7 @@ const CardEvolutions: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
       {nameImgPokemon.map((pokemon, index) => (
         <div key={index}>
           <header>
-            <LazyLoadImage
-              alt={pokemon.name}
-              src={pokemon.url}
-              key={pokemon.id}
-              placeholderSrc={pokemon.name}
-              effect="blur"
-            />
+            <img src={pokemon.url} alt={pokemon.name} srcSet={pokemon.url} />
           </header>
 
           <footer key={pokemon.id}>

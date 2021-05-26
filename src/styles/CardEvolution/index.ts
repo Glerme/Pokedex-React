@@ -24,7 +24,7 @@ export const ContainerCardEvolution = styled.div`
 
     & > header {
       margin-top: 3rem;
-      & > span {
+      & > img {
         margin: 1rem;
 
         max-width: 400px;

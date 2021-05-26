@@ -22,13 +22,7 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
       <div>
         <div></div>
 
-        <LazyLoadImage
-          alt={name}
-          src={idPokemonSprite}
-          key={idPokemonSprite}
-          placeholderSrc={name}
-          effect="blur"
-        />
+        <img src={idPokemonSprite} alt={name} srcSet={idPokemonSprite} />
       </div>
     </Styled.ContainerImage>
   );

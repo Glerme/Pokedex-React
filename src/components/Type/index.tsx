@@ -16,13 +16,12 @@ const Type: NextPage<ImagePokemonProps> = ({ type1, type2 }) => {
     <Styled.ContainerTypes>
       <div>
         <Styled.TypeOne tipo1={type1}>
-          <LazyLoadImage
+          <img
             alt={type1}
-            src={type1}
-            key={type1}
-            placeholderSrc={type1}
-            effect="blur"
+            src={getImageType(type1)}
+            srcSet={getImageType(type1)}
           />
+
           {type1}
         </Styled.TypeOne>
       </div>
@@ -30,13 +29,12 @@ const Type: NextPage<ImagePokemonProps> = ({ type1, type2 }) => {
       {type2 ? (
         <div>
           <Styled.TypeTwo tipo2={type2}>
-            <LazyLoadImage
+            <img
               alt={type2}
-              src={type2}
-              key={type2}
-              placeholderSrc={type2}
-              effect="blur"
+              src={getImageType(type2)}
+              srcSet={getImageType(type2)}
             />
+
             {type2}
           </Styled.TypeTwo>
         </div>

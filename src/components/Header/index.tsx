@@ -44,13 +44,7 @@ const Header: NextPage = () => {
             <p>Voltar</p>
           </div>
         )}
-        <LazyLoadImage
-          alt="Logo"
-          src="/logo.svg"
-          key="logo"
-          placeholderSrc="Logo"
-          effect="blur"
-        />
+        <img src="/logo.svg" alt="Logo" srcSet="/logo.svg" />
       </section>
 
       <Form ref={formRef} onSubmit={handleSubmit}>

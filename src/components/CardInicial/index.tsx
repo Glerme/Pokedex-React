@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 
 import CardInicialUnico from "../CardInicialUnico";
 
@@ -22,6 +22,8 @@ export interface CardInicialData {
 
 const CardInicial: NextPage = () => {
   const [pokes, setPokes] = useState<CardInicialData[]>([]);
+  const [pokePerPage, setPokePerPage] = useState(10);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   const getPokemon = useCallback(async () => {
     const pokemons = await fetchPokemons(0);
@@ -29,17 +31,32 @@ const CardInicial: NextPage = () => {
     setPokes(pokemons);
   }, []);
 
-  const fetchMorePokemons = useCallback(async () => {
-    const newPokemons = await fetchPokemons(pokes.length);
-
-    setPokes([...pokes, ...newPokemons]);
-  }, [pokes]);
-
   useEffect(() => {
     getPokemon();
   }, []);
 
-  console.log("pokes", pokes);
+  const handleScroll = async () => {
+    const position = window.pageYOffset;
+    var maxTop = document.body.scrollHeight - position;
+
+    console.log("position", position);
+    console.log("maxTop", maxTop);
+
+    if (position > maxTop) {
+      const newPokemons = await fetchPokemons(pokes.length);
+
+      setPokes([...pokes, ...newPokemons]);
+    }
+    setScrollPosition(position);
+    const perPage = pokePerPage;
+    setPokePerPage(perPage + 10);
+  };
+
+  useEffect(() => {
+    window.addEventListener("wheel", handleScroll);
+
+    return () => window.removeEventListener("wheel", handleScroll);
+  }, [scrollPosition]);
 
   return (
     <>
@@ -48,9 +65,6 @@ const CardInicial: NextPage = () => {
           <CardInicialUnico pokes={pok} key={index} />
         ))}
       </Styled.Container>
-      <button onClick={() => fetchMorePokemons()}>
-        Clique para carregar mais Pokemons
-      </button>
     </>
   );
 };
