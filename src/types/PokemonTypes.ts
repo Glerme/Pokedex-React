@@ -156,3 +156,9 @@ export interface PokemonSpecies {
   shape: {};
   varieties: [];
 }
+export interface PokemonSpeciesProps {
+  id: string;
+  name: string;
+  imageURL: string;
+  types: string[];
+}

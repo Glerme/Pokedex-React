@@ -4,7 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "../../services/api";
 
 import { EvolutionsData } from "../../types/PokemonEvolution";
-import { Evolucao, PokemonSpecies } from "../../types/PokemonTypes";
+import {
+  Evolucao,
+  PokemonSpecies,
+  PokemonSpeciesProps,
+} from "../../types/PokemonTypes";
 
 import { chainEvo } from "../../utils/chainEvo";
 
@@ -12,14 +16,10 @@ import CardEvolutions from "../CardEvolutions";
 
 import * as Styled from "../../styles/Evolution";
 
-export interface nameImgPokemon {
-  id: number;
-  name: string;
-  url: string;
-}
-
 const Evolutions: NextPage<EvolutionsData> = ({ pokemonData }) => {
-  const [nameImgPokemon, setNameImgPokemon] = useState<nameImgPokemon[]>([]);
+  const [nameImgPokemon, setNameImgPokemon] = useState<PokemonSpeciesProps[]>(
+    []
+  );
 
   const buscar = useCallback(async () => {
     try {
@@ -31,11 +31,11 @@ const Evolutions: NextPage<EvolutionsData> = ({ pokemonData }) => {
         species.evolution_chain.url
       );
 
-      const evolucoes = chainEvo(chain);
+      const evolucoes = await chainEvo(chain);
 
       setNameImgPokemon(evolucoes);
     } catch (erro) {
-      console.log(erro);
+      console.error(erro);
     }
   }, [nameImgPokemon]);
 

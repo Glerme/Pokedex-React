@@ -1,19 +1,18 @@
 import { NextPage } from "next";
 import Link from "next/link";
 
-import * as Styled from "../../styles/CardInicialUnico";
-import { getImageType } from "../../utils/getPokemonImages";
-import { CardInicialData } from "../CardInicial";
-
-import "react-lazy-load-image-component/src/effects/blur.css";
+import { PokemonSpeciesProps } from "../../types/PokemonTypes";
 import { useLoader } from "../../hooks/loader";
+
 import Loader from "../Loader";
 
+import * as Styled from "../../styles/CardInicialUnico";
+
 interface Card {
-  pokes: CardInicialData;
+  poke: PokemonSpeciesProps;
 }
 
-const CardInicialUnico: NextPage<Card> = ({ pokes }) => {
+const CardInicialUnico: NextPage<Card> = ({ poke }) => {
   const { addLoader, removeLoader, isLoader } = useLoader();
 
   return (
@@ -21,27 +20,23 @@ const CardInicialUnico: NextPage<Card> = ({ pokes }) => {
       {isLoader ? (
         <Loader />
       ) : (
-        <Link href={`/pokemon/${pokes.id}`}>
+        <Link href={`/pokemon/${poke.id}`}>
           <Styled.ContainerCard
-            tipo1={pokes.types && pokes.types[0]?.type.name}
-            tipo2={pokes.types && pokes.types[1]?.type.name}
+            tipo1={poke.types && poke.types[0]}
+            tipo2={poke.types && poke.types[1]}
           >
             <header>
-              <h3>{pokes?.name}</h3>
-              <p>#{pokes?.id?.toString().padStart(3, "0")}</p>
+              <h3>{poke?.name}</h3>
+              <p>#{poke?.id?.toString().padStart(3, "0")}</p>
             </header>
             <main>
-              <img src={pokes.url} alt={pokes.name} srcSet={pokes.url} />
+              <img src={poke.imageURL} alt={poke.name} srcSet={poke.imageURL} />
             </main>
             <footer>
-              {pokes.types &&
-                pokes.types.map(({ type }, index) => (
-                  <Styled.Tipos key={index} tipo1={type.name}>
-                    <img
-                      src={getImageType(type.name)}
-                      alt={type.name}
-                      srcSet={getImageType(type.name)}
-                    />
+              {poke.types &&
+                poke.types.map((type, index) => (
+                  <Styled.Tipos key={index} tipo1={type}>
+                    <img src={`/pokemonTypes/${type}.svg`} alt={type} />
                   </Styled.Tipos>
                 ))}
             </footer>

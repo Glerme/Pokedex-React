@@ -4,8 +4,6 @@ import axios from "axios";
 
 import { makeURlMega } from "../../utils/getPokemonImages";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
-
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
 import "react-lazy-load-image-component/src/effects/blur.css";

@@ -1,30 +1,17 @@
 import { NextPage } from "next";
-import { useCallback, useEffect, useRef, useState } from "react";
-
-import CardInicialUnico from "../CardInicialUnico";
+import { useCallback, useEffect, useState } from "react";
 
 import { fetchPokemons } from "../../utils/fetchPokemons";
-
+import { PokemonSpeciesProps } from "../../types/PokemonTypes";
 import { useLoader } from "../../hooks/loader";
+
+import CardInicialUnico from "../CardInicialUnico";
 import Loader from "../Loader";
 
 import * as Styled from "../../styles/CardInicial";
-interface PokemonTypes {
-  type: {
-    name: string;
-    url: string;
-  };
-}
-
-export interface CardInicialData {
-  name: string;
-  url: string;
-  id: number;
-  types: PokemonTypes[];
-}
 
 const CardInicial: NextPage = () => {
-  const [pokes, setPokes] = useState<CardInicialData[]>([]);
+  const [pokes, setPokes] = useState<PokemonSpeciesProps[]>([]);
   const [pokePerPage, setPokePerPage] = useState(10);
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -34,6 +21,7 @@ const CardInicial: NextPage = () => {
     try {
       addLoader();
       const pokemons = await fetchPokemons(0);
+
       setPokes(pokemons);
       removeLoader();
     } catch (error) {
@@ -53,10 +41,6 @@ const CardInicial: NextPage = () => {
     const valorNovo = maxTop - position;
 
     setScrollPosition(valorNovo);
-
-    console.log("position Atual", position);
-    console.log("Posiçao em relacao ao topo (MAXTOP)", maxTop);
-    console.log("valorNovo", valorNovo);
 
     if (position > valorNovo) {
       try {
@@ -95,7 +79,7 @@ const CardInicial: NextPage = () => {
       ) : (
         <Styled.Container>
           {pokes.map((pok, index) => (
-            <CardInicialUnico pokes={pok} key={index} />
+            <CardInicialUnico poke={pok} key={index} />
           ))}
         </Styled.Container>
       )}

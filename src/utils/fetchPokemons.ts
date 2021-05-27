@@ -1,5 +1,5 @@
 import { api } from "../services/api";
-import { getPokemonTypesAll } from "./AllPokemonsTypes";
+import { PokemonSpeciesProps } from "../types/PokemonTypes";
 import { getPokemonSpecies } from "./chainEvo";
 
 export const fetchPokemons = async (offset: number) => {
@@ -7,18 +7,9 @@ export const fetchPokemons = async (offset: number) => {
     `/pokemon?offset=${offset}&limit=25`
   );
 
-  const parsed = pokemons.results.map((res) => {
-    return getPokemonSpecies(res.name, res.url);
-  });
-
-  const types = await Promise.all(
-    parsed.map((item) => getPokemonTypesAll(item.id))
+  const dados = await Promise.all<PokemonSpeciesProps>(
+    pokemons.results.map((res) => getPokemonSpecies(res.name, res.url))
   );
 
-  return parsed.map((parse, index) => {
-    return {
-      ...parse,
-      types: types[index],
-    };
-  });
+  return dados;
 };
