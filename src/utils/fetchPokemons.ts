@@ -4,7 +4,7 @@ import { getPokemonSpecies } from "./chainEvo";
 
 export const fetchPokemons = async (offset: number) => {
   const { data: pokemons } = await api.get(
-    `/pokemon?offset=${offset}&limit=50`
+    `/pokemon?offset=${offset}&limit=25`
   );
 
   const parsed = pokemons.results.map((res) => {
