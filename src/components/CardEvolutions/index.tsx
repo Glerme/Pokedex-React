@@ -8,20 +8,22 @@ export interface CardEvolutions {
 
 const CardEvolutions: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
   return (
-    <Styled.ContainerCardEvolution>
-      {nameImgPokemon.map((pokemon, index) => (
-        <div key={index}>
-          <header>
-            <img src={pokemon.imageURL} alt={pokemon.name} />
-          </header>
+    <>
+      <Styled.ContainerCardEvolution>
+        {nameImgPokemon.map((pokemon, index) => (
+          <div key={index}>
+            <header>
+              <img src={pokemon.imageURL} alt={pokemon.name} />
+            </header>
 
-          <footer key={pokemon.id}>
-            <p>{pokemon.name}</p>
-            <span>#{pokemon.id}</span>
-          </footer>
-        </div>
-      ))}
-    </Styled.ContainerCardEvolution>
+            <footer key={pokemon.id}>
+              <p>{pokemon.name}</p>
+              <span>#{pokemon.id}</span>
+            </footer>
+          </div>
+        ))}
+      </Styled.ContainerCardEvolution>
+    </>
   );
 };
 
