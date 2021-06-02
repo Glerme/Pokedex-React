@@ -38,6 +38,10 @@ const Pokemon: NextPage<PokemonProps> = ({
 }) => {
   const { addLoader, isLoader, removeLoader } = useLoader();
 
+  const isAlola = !!pokemonData.name.match(/alola/g);
+
+  console.log("pokemonData.name", isAlola);
+
   return (
     <>
       <Head>
@@ -53,14 +57,15 @@ const Pokemon: NextPage<PokemonProps> = ({
           ) : (
             <>
               <Styled.ContainerCardPokemon>
-                <NamePokemon name={pokemonData.name} id={pokemonData.id} />
+                <NamePokemon name={pokemonData?.name} id={pokemonData?.id} />
                 <ImagePokemon
-                  idPokemonSprite={getPokemonImage(pokemonData.id)}
-                  colorPkm={pokemonData.types[0].type.name}
-                  name={pokemonData.name}
+                  idPokemonSprite={getPokemonImage(pokemonData?.id)}
+                  colorPkm={pokemonData?.types[0].type.name}
+                  name={pokemonData?.name}
+                  alolan={isAlola}
                 />
                 <Type
-                  type1={pokemonData.types[0].type.name}
+                  type1={pokemonData?.types[0].type.name}
                   type2={pokemonData.types[1]?.type.name}
                 />
               </Styled.ContainerCardPokemon>
@@ -114,5 +119,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   } catch (error) {
     console.error(error);
+    return {
+      props: {},
+    };
   }
 };

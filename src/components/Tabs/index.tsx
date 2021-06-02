@@ -4,6 +4,10 @@ import { useCallback, useState } from "react";
 import * as Styled from "../../styles/Tabs";
 
 import { Status } from "../../types/PokemonTypes";
+import {
+  getPokemonImageAlola,
+  makeURLAlola,
+} from "../../utils/getPokemonImages";
 
 import Evolutions from "../Evolutions";
 import MegaEvolution from "../MegaEvolution";
@@ -14,7 +18,13 @@ const Tabs: NextPage<Status> = ({
   pokemonStatus,
   pokemonData,
 }) => {
-  const types = ["Abilities", "Status", "Evolutions", "Mega-Evolution"];
+  const types = [
+    "Abilities",
+    "Status",
+    "Evolutions",
+    "Mega-Evolution",
+    "Alolan",
+  ];
   const [active, setActive] = useState(types[0]);
 
   const getProgressColor = useCallback((value: number) => {
@@ -94,6 +104,10 @@ const Tabs: NextPage<Status> = ({
             id={pokemonData.id.toString()}
             name={pokemonData.name}
           />
+        )}
+
+        {active === types[4] && (
+          <img src={getPokemonImageAlola(pokemonData.id)} alt="" />
         )}
       </Styled.ContainerStatus>
     </>

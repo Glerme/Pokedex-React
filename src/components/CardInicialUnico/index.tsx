@@ -7,6 +7,9 @@ import { useLoader } from "../../hooks/loader";
 import Loader from "../Loader";
 
 import * as Styled from "../../styles/CardInicialUnico";
+import { getPokemonImageAlola } from "../../utils/getPokemonImages";
+import { useCallback, useEffect } from "react";
+import axios from "axios";
 
 interface Card {
   poke: PokemonSpeciesProps;

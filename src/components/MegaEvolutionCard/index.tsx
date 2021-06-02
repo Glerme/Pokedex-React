@@ -6,7 +6,6 @@ import { makeURlMega } from "../../utils/getPokemonImages";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
-import "react-lazy-load-image-component/src/effects/blur.css";
 import * as Styled from "../../styles/MegaEvolutionCard";
 
 const MegaEvolutionCard: NextPage<EvolutionProps> = ({ id, name }) => {

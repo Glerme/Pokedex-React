@@ -1,7 +1,14 @@
 export const makeURL = (id: string) => `/images/${id}.png`;
 
+export const makeURLAlola = (id: string) => `/images/${id}.png`;
+
 export const getPokemonImage = (id: number) =>
   id < 100 ? makeURL(id.toString().padStart(3, "0")) : makeURL(id.toString());
+
+export const getPokemonImageAlola = (id: number) =>
+  id < 100
+    ? makeURLAlola(id.toString().padStart(3, "0"))
+    : makeURLAlola(id.toString());
 
 export const makeURlMega = (id: number, name: string) => {
   if (id < 100) {

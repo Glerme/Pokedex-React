@@ -30,7 +30,36 @@ export const MegaEvolutionCardContainer = styled.div`
     justify-content: center;
   }
 
+  & > p {
+    font-size: 2rem;
+    text-transform: capitalize;
+
+    margin-bottom: 0.2rem;
+    color: var(--text-third);
+
+    @media (max-width: 800px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+    }
+  }
+
   & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & > img {
+      width: 100%;
+
+      @media (min-width: 1600px) {
+        width: 35rem;
+      }
+    }
+
     & > p {
       font-size: 2rem;
       text-transform: capitalize;

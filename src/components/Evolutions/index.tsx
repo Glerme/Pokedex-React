@@ -43,6 +43,8 @@ const Evolutions: NextPage<EvolutionsData> = ({ pokemonData }) => {
     buscar();
   }, []);
 
+  console.log(nameImgPokemon);
+
   return (
     <Styled.EvolutionContainer>
       <CardEvolutions nameImgPokemon={nameImgPokemon} />
