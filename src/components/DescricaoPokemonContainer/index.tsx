@@ -4,7 +4,7 @@ import { Status } from "../../types/PokemonTypes";
 
 import Tabs from "../Tabs";
 
-const StatusPokemon: NextPage<Status> = ({
+const DescricaoPokemonContainer: NextPage<Status> = ({
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
@@ -18,4 +18,4 @@ const StatusPokemon: NextPage<Status> = ({
   );
 };
 
-export default StatusPokemon;
+export default DescricaoPokemonContainer;

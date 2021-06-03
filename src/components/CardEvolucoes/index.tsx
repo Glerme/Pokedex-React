@@ -6,7 +6,7 @@ export interface CardEvolutions {
   nameImgPokemon: PokemonSpeciesProps[];
 }
 
-const CardEvolutions: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
+const CardEvolucoes: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
   return (
     <>
       <Styled.ContainerCardEvolution>
@@ -27,4 +27,4 @@ const CardEvolutions: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
   );
 };
 
-export default CardEvolutions;
+export default CardEvolucoes;

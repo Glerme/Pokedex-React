@@ -1,8 +1,8 @@
 import { GetServerSideProps, NextPage } from "next";
 
-import NamePokemon from "../../components/NamePokemon";
-import Type from "../../components/Type";
-import StatusPokemon from "../../components/StatusPokemon";
+import NomePokemon from "../../components/NomePokemon";
+import TipoPokemon from "../../components/TipoPokemon";
+import DescricaoPokemonContainer from "../../components/DescricaoPokemonContainer";
 import ImagePokemon from "../../components/ImagePokemon";
 import Header from "../../components/Header";
 
@@ -57,19 +57,19 @@ const Pokemon: NextPage<PokemonProps> = ({
           ) : (
             <>
               <Styled.ContainerCardPokemon>
-                <NamePokemon name={pokemonData?.name} id={pokemonData?.id} />
+                <NomePokemon name={pokemonData?.name} id={pokemonData?.id} />
                 <ImagePokemon
                   idPokemonSprite={getPokemonImage(pokemonData?.id)}
                   colorPkm={pokemonData?.types[0].type.name}
                   name={pokemonData?.name}
                   alolan={isAlola}
                 />
-                <Type
+                <TipoPokemon
                   type1={pokemonData?.types[0].type.name}
                   type2={pokemonData.types[1]?.type.name}
                 />
               </Styled.ContainerCardPokemon>
-              <StatusPokemon
+              <DescricaoPokemonContainer
                 pokemonAbilities={pokemonAbilities}
                 pokemonStatus={pokemonStatus}
                 pokemonData={pokemonData}

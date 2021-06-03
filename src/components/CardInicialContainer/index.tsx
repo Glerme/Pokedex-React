@@ -10,7 +10,7 @@ import Loader from "../Loader";
 
 import * as Styled from "../../styles/CardInicial";
 
-const CardInicial: NextPage = () => {
+const CardInicialContainer: NextPage = () => {
   const [pokes, setPokes] = useState<PokemonSpeciesProps[]>([]);
   const [pokePerPage, setPokePerPage] = useState(10);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -87,4 +87,4 @@ const CardInicial: NextPage = () => {
   );
 };
 
-export default CardInicial;
+export default CardInicialContainer;

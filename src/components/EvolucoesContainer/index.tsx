@@ -12,11 +12,11 @@ import {
 
 import { chainEvo } from "../../utils/chainEvo";
 
-import CardEvolutions from "../CardEvolutions";
+import CardEvolucoes from "../CardEvolucoes";
 
 import * as Styled from "../../styles/Evolution";
 
-const Evolutions: NextPage<EvolutionsData> = ({ pokemonData }) => {
+const EvolucoesContainer: NextPage<EvolutionsData> = ({ pokemonData }) => {
   const [nameImgPokemon, setNameImgPokemon] = useState<PokemonSpeciesProps[]>(
     []
   );
@@ -47,9 +47,9 @@ const Evolutions: NextPage<EvolutionsData> = ({ pokemonData }) => {
 
   return (
     <Styled.EvolutionContainer>
-      <CardEvolutions nameImgPokemon={nameImgPokemon} />
+      <CardEvolucoes nameImgPokemon={nameImgPokemon} />
     </Styled.EvolutionContainer>
   );
 };
 
-export default Evolutions;
+export default EvolucoesContainer;

@@ -4,13 +4,10 @@ import { useCallback, useState } from "react";
 import * as Styled from "../../styles/Tabs";
 
 import { Status } from "../../types/PokemonTypes";
-import {
-  getPokemonImageAlola,
-  makeURLAlola,
-} from "../../utils/getPokemonImages";
+import { makeURLAlola } from "../../utils/getPokemonImages";
 
-import Evolutions from "../Evolutions";
-import MegaEvolution from "../MegaEvolution";
+import EvolucoesContainer from "../EvolucoesContainer";
+import MegaEvolucaoContainer from "../MegaEvolucaoContainer";
 import ProgressBar from "../ProgressBar";
 
 const Tabs: NextPage<Status> = ({
@@ -97,17 +94,22 @@ const Tabs: NextPage<Status> = ({
           </Styled.Content>
         )}
 
-        {active === types[2] && <Evolutions pokemonData={pokemonData} />}
+        {active === types[2] && (
+          <EvolucoesContainer pokemonData={pokemonData} />
+        )}
 
         {active === types[3] && (
-          <MegaEvolution
+          <MegaEvolucaoContainer
             id={pokemonData.id.toString()}
             name={pokemonData.name}
           />
         )}
 
         {active === types[4] && (
-          <img src={getPokemonImageAlola(pokemonData.id)} alt="" />
+          <img
+            src={makeURLAlola(pokemonData.name || pokemonData.id.toString())}
+            alt=""
+          />
         )}
       </Styled.ContainerStatus>
     </>

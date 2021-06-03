@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import * as Styled from "../../styles/ImagePokemon";
-import { makeURLAlola } from "../../utils/getPokemonImages";
+import { makeURL } from "../../utils/getPokemonImages";
 
 interface ImagePokemonProps {
   idPokemonSprite: string;
@@ -23,7 +23,7 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
         {!alolan ? (
           <img src={idPokemonSprite} alt={name} srcSet={idPokemonSprite} />
         ) : (
-          <img src={makeURLAlola(name)} alt={name} />
+          <img src={makeURL(name)} alt={name} />
         )}
         <div></div>
       </div>

@@ -1,5 +1,0 @@
-https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/Others/type-icons/[tipoDoPokemon].svg
-
-
-
-https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/Others/Mega-Evolution-Sigil.png = mega evoluçao simbolo

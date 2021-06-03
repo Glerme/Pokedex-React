@@ -8,7 +8,7 @@ import { EvolutionProps } from "../../types/PokemonEvolution";
 
 import * as Styled from "../../styles/MegaEvolutionCard";
 
-const MegaEvolutionCard: NextPage<EvolutionProps> = ({ id, name }) => {
+const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name }) => {
   const [megaEvolutionsURLs, setMegaEvolutionURLs] = useState<string[]>([]);
 
   const getMega = useCallback(async () => {
@@ -45,4 +45,4 @@ const MegaEvolutionCard: NextPage<EvolutionProps> = ({ id, name }) => {
   );
 };
 
-export default MegaEvolutionCard;
+export default CardMegaEvolucao;

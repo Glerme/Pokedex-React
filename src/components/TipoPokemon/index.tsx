@@ -8,7 +8,7 @@ interface ImagePokemonProps {
   type2: string;
 }
 
-const Type: NextPage<ImagePokemonProps> = ({ type1, type2 }) => {
+const TipoPokemon: NextPage<ImagePokemonProps> = ({ type1, type2 }) => {
   return (
     <Styled.ContainerTypes>
       <div>
@@ -34,4 +34,4 @@ const Type: NextPage<ImagePokemonProps> = ({ type1, type2 }) => {
   );
 };
 
-export default Type;
+export default TipoPokemon;

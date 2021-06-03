@@ -8,7 +8,7 @@ interface NamePokemonProps {
   id: number;
 }
 
-const NamePokemon: NextPage<NamePokemonProps> = ({ id, name }) => {
+const NomePokemon: NextPage<NamePokemonProps> = ({ id, name }) => {
   const newId = formatId(id);
 
   return (
@@ -19,4 +19,4 @@ const NamePokemon: NextPage<NamePokemonProps> = ({ id, name }) => {
   );
 };
 
-export default NamePokemon;
+export default NomePokemon;
