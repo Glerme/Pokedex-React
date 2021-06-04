@@ -39,6 +39,7 @@ const Pokemon: NextPage<PokemonProps> = ({
   const { addLoader, isLoader, removeLoader } = useLoader();
 
   const isAlola = !!pokemonData.name.match(/alola/g);
+  const isGmax = !!pokemonData.name.match(/gmax/g);
 
   console.log("pokemonData.name", isAlola);
 
@@ -63,6 +64,7 @@ const Pokemon: NextPage<PokemonProps> = ({
                   colorPkm={pokemonData?.types[0].type.name}
                   name={pokemonData?.name}
                   alolan={isAlola}
+                  isGmax={isGmax}
                 />
                 <TipoPokemon
                   type1={pokemonData?.types[0].type.name}
@@ -73,6 +75,8 @@ const Pokemon: NextPage<PokemonProps> = ({
                 pokemonAbilities={pokemonAbilities}
                 pokemonStatus={pokemonStatus}
                 pokemonData={pokemonData}
+                isAlola={isAlola}
+                isGmax={isGmax}
               />
             </>
           )}

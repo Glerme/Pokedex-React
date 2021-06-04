@@ -39,6 +39,8 @@ export interface Status {
   pokemonStatus: PokemonStatusProps[];
   pokemonAbilities: PokemonAbilitiesProps[];
   pokemonData: PokemonData;
+  isAlola: boolean;
+  isGmax: boolean;
 }
 
 export interface Abilities {

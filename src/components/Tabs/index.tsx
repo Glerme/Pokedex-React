@@ -4,9 +4,10 @@ import { useCallback, useState } from "react";
 import * as Styled from "../../styles/Tabs";
 
 import { Status } from "../../types/PokemonTypes";
-import { makeURLAlola } from "../../utils/getPokemonImages";
+import AlolaContainer from "../AlolaContainer";
 
 import EvolucoesContainer from "../EvolucoesContainer";
+import GigantamaxContainer from "../GigantamaxContainer";
 import MegaEvolucaoContainer from "../MegaEvolucaoContainer";
 import ProgressBar from "../ProgressBar";
 
@@ -14,13 +15,17 @@ const Tabs: NextPage<Status> = ({
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
+  isAlola,
+  isGmax,
 }) => {
   const types = [
     "Abilities",
     "Status",
     "Evolutions",
     "Mega-Evolution",
+    "Gigantamax",
     "Alolan",
+    "Galarian",
   ];
   const [active, setActive] = useState(types[0]);
 
@@ -105,10 +110,13 @@ const Tabs: NextPage<Status> = ({
           />
         )}
 
-        {active === types[4] && (
-          <img
-            src={makeURLAlola(pokemonData.name || pokemonData.id.toString())}
-            alt=""
+        {active === types[4] && <GigantamaxContainer isGmax={isGmax} />}
+
+        {active === types[5] && (
+          <AlolaContainer
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+            isAlola={isAlola}
           />
         )}
       </Styled.ContainerStatus>
