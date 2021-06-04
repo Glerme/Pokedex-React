@@ -79,7 +79,13 @@ const CardInicialContainer: NextPage = () => {
       ) : (
         <Styled.Container>
           {pokes.map((pok, index) => (
-            <CardInicialUnico poke={pok} key={index} />
+            <CardInicialUnico
+              poke={pok}
+              key={index}
+              isAlola={!!pok.name.match(/alola/g)}
+              isGalarian={!!pok.name.match(/galar/g)}
+              isGmax={!!pok.name.match(/gmax/g)}
+            />
           ))}
         </Styled.Container>
       )}

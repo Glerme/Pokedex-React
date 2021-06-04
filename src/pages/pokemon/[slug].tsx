@@ -40,6 +40,7 @@ const Pokemon: NextPage<PokemonProps> = ({
 
   const isAlola = !!pokemonData.name.match(/alola/g);
   const isGmax = !!pokemonData.name.match(/gmax/g);
+  const isGalarian = !!pokemonData.name.match(/galar/g);
 
   console.log("pokemonData.name", isAlola);
 
@@ -66,6 +67,7 @@ const Pokemon: NextPage<PokemonProps> = ({
                   name={pokemonData?.name}
                   alolan={isAlola}
                   isGmax={isGmax}
+                  isGalarian={isGalarian}
                 />
                 <TipoPokemon
                   type1={pokemonData?.types[0].type.name}
@@ -78,6 +80,7 @@ const Pokemon: NextPage<PokemonProps> = ({
                 pokemonData={pokemonData}
                 isAlola={isAlola}
                 isGmax={isGmax}
+                isGalarian={isGalarian}
               />
             </>
           )}

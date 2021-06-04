@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { NextPage } from "next";
 
-import CardInicialContainer from "../components/CardInicialContainer";
 import Header from "../components/Header";
+import CardInicialContainer from "../components/CardInicialContainer";
 
 import { LoaderProvider } from "../hooks/loader";
 

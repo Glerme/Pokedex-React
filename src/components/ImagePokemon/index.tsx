@@ -10,6 +10,7 @@ interface ImagePokemonProps {
   name: string;
   alolan: boolean;
   isGmax: boolean;
+  isGalarian: boolean;
 }
 
 const ImagePokemon: NextPage<ImagePokemonProps> = ({
@@ -18,6 +19,7 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
   name,
   alolan,
   isGmax,
+  isGalarian,
   ...rest
 }) => {
   const [pokemonImg, setPokemonImg] = useState<string>("");
@@ -27,12 +29,16 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
       const imagesURLs = makeURL(name);
       setPokemonImg(imagesURLs);
 
-      console.log("primeiro");
+      return;
+    } else if (isGalarian) {
+      const imagesURLs = makeURL(name);
+      setPokemonImg(imagesURLs);
 
       return;
     } else if (isGmax) {
       const imagesURLs = makeURL(name);
       setPokemonImg(imagesURLs);
+
       return;
     } else {
       setPokemonImg(idPokemonSprite);
