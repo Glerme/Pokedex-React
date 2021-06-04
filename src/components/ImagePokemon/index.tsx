@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
 import * as Styled from "../../styles/ImagePokemon";
-import { makeURL, makeURLAlola } from "../../utils/getPokemonImages";
+import { makeURL } from "../../utils/getPokemonImages";
 
 interface ImagePokemonProps {
   idPokemonSprite: string;
@@ -37,11 +37,11 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
     } else {
       setPokemonImg(idPokemonSprite);
     }
-  }, [pokemonImg]);
+  }, [idPokemonSprite]);
 
   useEffect(() => {
     getImg();
-  }, [pokemonImg]);
+  }, [idPokemonSprite]);
 
   return (
     <Styled.ContainerImage bgColor={colorPkm} {...rest}>

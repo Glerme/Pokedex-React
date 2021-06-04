@@ -47,7 +47,8 @@ const Pokemon: NextPage<PokemonProps> = ({
     <>
       <Head>
         <title>
-          Pokedex | {pokemonData.name.toUpperCase()} - #{pokemonData.id}
+          Pokedex | {pokemonData.name.toUpperCase()} - #
+          {pokemonData.id.toString().padStart(3, "0")}
         </title>
       </Head>
       <Header />
