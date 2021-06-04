@@ -37,6 +37,13 @@ Ela possui todos os Pokémons, incluindo formas alternativas.
 
 Busque o Pokémon desejado pelo nome ou seu número na Pokedéx, ou se desejar, veja os diversos pokémons que estão na tela inicial da aplicação.
 
+A Aplicação requer o .env para utiliza-lá corretamente.
+Crie um arquivo .env e utilize as URLS abaixo:
+
+    API_URL=https://pokeapi.co/api/v2/
+    IMAGE_API_URL=https://raw.githubusercontent.com/Glerme/Pokemon/master/assets/images/
+    IMAGE_API_TYPE_URL=https://raw.githubusercontent.com/Glerme/Pokemon/master/assets/Others/type-icons/
+
 <br />
 <hr>
 
