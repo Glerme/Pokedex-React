@@ -20,7 +20,7 @@
 </h4>
 
 <h1 align="center">
-  <img alt="Print tela inicial" title="telaInicial" src="https://github.com/Glerme/Move-It/blob/main/public/telaInicial.png" />
+  <img alt="Print tela inicial" title="telaInicial" src="https://github.com/Glerme/Pokedex-React/blob/main/public/telaInicial.png" />
 </h1>
 <br />
 <hr>
