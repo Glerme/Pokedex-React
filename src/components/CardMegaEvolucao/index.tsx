@@ -32,7 +32,7 @@ const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name }) => {
       {megaEvolutionsURLs.length > 0 ? (
         megaEvolutionsURLs.map((evolutionURL, index) => (
           <div key={index}>
-            <img alt={name} src={evolutionURL} srcSet={evolutionURL} />
+            <img alt={name} src={evolutionURL} />
 
             <p>Mega {name}</p>
             <span>#{id.padStart(3, "0")}</span>

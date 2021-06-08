@@ -8,13 +8,14 @@ import Loader from "../Loader";
 
 import * as Styled from "../../styles/CardInicialUnico";
 import { useCallback, useEffect, useState } from "react";
-import { makeURL } from "../../utils/getPokemonImages";
+import { getPokemonImage, makeURL } from "../../utils/getPokemonImages";
 
 interface Card {
   poke: PokemonSpeciesProps;
   isAlola: boolean;
   isGmax: boolean;
   isGalarian: boolean;
+  isAlternativeForm: boolean;
 }
 
 const CardInicialUnico: NextPage<Card> = ({
@@ -22,10 +23,13 @@ const CardInicialUnico: NextPage<Card> = ({
   isAlola,
   isGalarian,
   isGmax,
+  isAlternativeForm,
 }) => {
   const { addLoader, removeLoader, isLoader } = useLoader();
 
   const [pokemonImg, setPokemonImg] = useState<string>("");
+
+  console.log("fora isAlternativeForm", isAlternativeForm);
 
   const getImg = useCallback(async () => {
     if (isAlola) {
@@ -43,8 +47,14 @@ const CardInicialUnico: NextPage<Card> = ({
       setPokemonImg(imagesURLs);
 
       return;
+    } else if (isAlternativeForm) {
+      console.log("isAlternativeForm", isAlternativeForm);
+      const imagesURLs = makeURL(poke.name);
+      setPokemonImg(imagesURLs);
     } else {
-      setPokemonImg(makeURL(poke.id.padStart(3, "0")));
+      const imagesURLs = getPokemonImage(Number(poke.id));
+
+      setPokemonImg(imagesURLs);
     }
   }, [poke]);
 
@@ -67,7 +77,7 @@ const CardInicialUnico: NextPage<Card> = ({
               <p>#{poke?.id?.toString().padStart(3, "0")}</p>
             </header>
             <main>
-              <img src={pokemonImg} alt={poke.name} srcSet={pokemonImg} />
+              <img src={pokemonImg} alt={poke.name} />
             </main>
             <footer>
               {poke.types &&

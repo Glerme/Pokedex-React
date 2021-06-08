@@ -1,6 +1,6 @@
-export const makeURL = (id: string) => `/images/${id}.png`;
+export const makeURL = (name: string) => `/images/${name}.png`;
 
-export const makeURLAlola = (id: string) => `/images/${id}-alola.png`;
+export const makeURLAlola = (name: string) => `/images/${name}-alola.png`;
 
 export const getPokemonImage = (id: number) =>
   id < 100 ? makeURL(id.toString().padStart(3, "0")) : makeURL(id.toString());

@@ -85,6 +85,7 @@ const CardInicialContainer: NextPage = () => {
               isAlola={!!pok.name.match(/alola/g)}
               isGalarian={!!pok.name.match(/galar/g)}
               isGmax={!!pok.name.match(/gmax/g)}
+              isAlternativeForm={!!pok.name.match(/-/gim)}
             />
           ))}
         </Styled.Container>

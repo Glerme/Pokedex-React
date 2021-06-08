@@ -42,8 +42,6 @@ const Pokemon: NextPage<PokemonProps> = ({
   const isGmax = !!pokemonData.name.match(/gmax/g);
   const isGalarian = !!pokemonData.name.match(/galar/g);
 
-  console.log("pokemonData.name", isAlola);
-
   return (
     <>
       <Head>
