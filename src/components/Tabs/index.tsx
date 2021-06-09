@@ -17,6 +17,7 @@ const Tabs: NextPage<Status> = ({
   pokemonData,
   isAlola,
   isGmax,
+  isMega,
 }) => {
   const types = [
     "Abilities",
@@ -107,6 +108,7 @@ const Tabs: NextPage<Status> = ({
           <MegaEvolucaoContainer
             id={pokemonData.id.toString()}
             name={pokemonData.name}
+            isMega={isMega}
           />
         )}
 

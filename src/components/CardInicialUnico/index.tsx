@@ -25,7 +25,7 @@ const CardInicialUnico: NextPage<Card> = ({
   isGmax,
   isAlternativeForm,
 }) => {
-  const { addLoader, removeLoader, isLoader } = useLoader();
+  const { isLoader } = useLoader();
 
   const [pokemonImg, setPokemonImg] = useState<string>("");
 

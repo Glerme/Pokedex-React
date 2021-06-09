@@ -3,7 +3,9 @@ export const makeURL = (name: string) => `/images/${name}.png`;
 export const makeURLAlola = (name: string) => `/images/${name}-alola.png`;
 
 export const makeURLM = (name: string) => {
+  console.log("name", name);
   if (name === "charizard") {
+    console.log("ENTROU");
     const charizardX = `/images/${name}-Mega-X.png`;
 
     const charizardY = `/images/${name}-Mega-Y.png`;
@@ -11,9 +13,9 @@ export const makeURLM = (name: string) => {
     return [charizardX, charizardY];
   }
 
-  const parsed = `/images/${name}-mega.png`;
+  const parsed = `/images/${name}-Mega.png`;
 
-  return parsed;
+  return [parsed];
 };
 
 export const getPokemonImage = (id: number) =>

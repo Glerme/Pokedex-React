@@ -42,6 +42,7 @@ export interface Status {
   isAlola: boolean;
   isGmax: boolean;
   isGalarian: boolean;
+  isMega: boolean;
 }
 
 export interface Abilities {
