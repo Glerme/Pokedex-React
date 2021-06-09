@@ -2,22 +2,27 @@ import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
 import axios from "axios";
 
-import { makeURlMega } from "../../utils/getPokemonImages";
+import { makeURLM, makeURlMega } from "../../utils/getPokemonImages";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
 import * as Styled from "../../styles/MegaEvolutionCard";
 
 const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name }) => {
-  const [megaEvolutionsURLs, setMegaEvolutionURLs] = useState<string[]>([]);
+  const [megaEvolutionsURLs, setMegaEvolutionURLs] = useState<string[]>();
 
   const getMega = useCallback(async () => {
     try {
-      const imagesURLs = makeURlMega(Number(id), name);
+      const imagesURLs = makeURLM(name);
 
-      await axios.get(imagesURLs[0]);
+      if (imagesURLs[1]) {
+        setMegaEvolutionURLs([...imagesURLs]);
+        return;
+      }
 
-      setMegaEvolutionURLs(imagesURLs);
+      // setMegaEvolutionURLs([imagesURLs]);
+
+      // await axios.get(imagesURLs[0]);
     } catch (err) {
       setMegaEvolutionURLs([]);
     }
