@@ -1,16 +1,17 @@
 import { NextPage } from "next";
 
 import * as Styled from "../../styles/GigantamaxContainer";
+import { GmaxContainerProps } from "../../types/PokemonGmax";
 import CardGigantamax from "../CardGigantamax";
 
-interface GigantamaxProps {
-  isGmax: boolean;
-}
-
-const GigantamaxContainer: NextPage<GigantamaxProps> = ({ isGmax }) => {
+const GigantamaxContainer: NextPage<GmaxContainerProps> = ({
+  isGmax,
+  id,
+  name,
+}) => {
   return (
     <Styled.GigantamaxContainer>
-      <CardGigantamax></CardGigantamax>
+      <CardGigantamax id={id} isGmax={isGmax} name={name} />
     </Styled.GigantamaxContainer>
   );
 };

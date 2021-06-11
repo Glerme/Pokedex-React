@@ -40,6 +40,9 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
       setPokemonImg(imagesURLs);
 
       return;
+    } else if (!!name.match("-")) {
+      const imagesURLs = makeURL(name);
+      setPokemonImg(imagesURLs);
     } else {
       setPokemonImg(idPokemonSprite);
     }

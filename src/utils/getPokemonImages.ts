@@ -2,10 +2,13 @@ export const makeURL = (name: string) => `/images/${name}.png`;
 
 export const makeURLAlola = (name: string) => `/images/${name}-alola.png`;
 
+export const makeURLGalar = (name: string) => `/images/${name}-galar.png`;
+
+export const makeURLGmax = (name: string) => `/images/${name}-Gmax.png`;
+
 export const makeURLM = (name: string) => {
   console.log("name", name);
   if (name === "charizard") {
-    console.log("ENTROU");
     const charizardX = `/images/${name}-Mega-X.png`;
 
     const charizardY = `/images/${name}-Mega-Y.png`;

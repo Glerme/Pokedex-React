@@ -7,6 +7,7 @@ import { Status } from "../../types/PokemonTypes";
 import AlolaContainer from "../AlolaContainer";
 
 import EvolucoesContainer from "../EvolucoesContainer";
+import GalarianContainer from "../GalarianContainer";
 import GigantamaxContainer from "../GigantamaxContainer";
 import MegaEvolucaoContainer from "../MegaEvolucaoContainer";
 import ProgressBar from "../ProgressBar";
@@ -18,6 +19,7 @@ const Tabs: NextPage<Status> = ({
   isAlola,
   isGmax,
   isMega,
+  isGalarian,
 }) => {
   const types = [
     "Abilities",
@@ -112,13 +114,27 @@ const Tabs: NextPage<Status> = ({
           />
         )}
 
-        {active === types[4] && <GigantamaxContainer isGmax={isGmax} />}
+        {active === types[4] && (
+          <GigantamaxContainer
+            isGmax={isGmax}
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+          />
+        )}
 
         {active === types[5] && (
           <AlolaContainer
             id={pokemonData.id.toString()}
             name={pokemonData.name}
             isAlola={isAlola}
+          />
+        )}
+
+        {active === types[6] && (
+          <GalarianContainer
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+            isGalar={isGalarian}
           />
         )}
       </Styled.ContainerStatus>
