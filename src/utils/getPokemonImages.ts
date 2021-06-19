@@ -1,6 +1,25 @@
-export const makeURL = (id: string) => `/images/${id}.png`;
+export const makeURL = (name: string) => `/images/${name}.png`;
 
-export const makeURLAlola = (id: string) => `/images/${id}-alola.png`;
+export const makeURLAlola = (name: string) => `/images/${name}-alola.png`;
+
+export const makeURLGalar = (name: string) => `/images/${name}-galar.png`;
+
+export const makeURLGmax = (name: string) => `/images/${name}-Gmax.png`;
+
+export const makeURLM = (name: string) => {
+  console.log("name", name);
+  if (name === "charizard") {
+    const charizardX = `/images/${name}-Mega-X.png`;
+
+    const charizardY = `/images/${name}-Mega-Y.png`;
+
+    return [charizardX, charizardY];
+  }
+
+  const parsed = `/images/${name}-Mega.png`;
+
+  return [parsed];
+};
 
 export const getPokemonImage = (id: number) =>
   id < 100 ? makeURL(id.toString().padStart(3, "0")) : makeURL(id.toString());

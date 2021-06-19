@@ -2,24 +2,38 @@ import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
 import axios from "axios";
 
-import { makeURlMega } from "../../utils/getPokemonImages";
+import { makeURL, makeURLM, makeURlMega } from "../../utils/getPokemonImages";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
 import * as Styled from "../../styles/MegaEvolutionCard";
 
-const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name }) => {
-  const [megaEvolutionsURLs, setMegaEvolutionURLs] = useState<string[]>([]);
+const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name, isMega }) => {
+  const [imagemMega, setImagemMega] = useState<string[]>();
 
   const getMega = useCallback(async () => {
-    try {
-      const imagesURLs = makeURlMega(Number(id), name);
+    if (isMega) {
+      const imagesURLs = makeURL(name);
+      setImagemMega([imagesURLs]);
 
-      await axios.get(imagesURLs[0]);
+      return;
+    } else {
+      const imagesURLs = makeURLM(name);
 
-      setMegaEvolutionURLs(imagesURLs);
-    } catch (err) {
-      setMegaEvolutionURLs([]);
+      try {
+        const { status } = await axios.get(imagesURLs[0]);
+
+        if (status === 404) {
+          setImagemMega(["Não possui mega"]);
+          return;
+        }
+      } catch (error) {
+        console.error({ error });
+        return;
+      }
+
+      setImagemMega(imagesURLs);
+      return;
     }
   }, []);
 
@@ -29,10 +43,10 @@ const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name }) => {
 
   return (
     <Styled.MegaEvolutionCardContainer>
-      {megaEvolutionsURLs.length > 0 ? (
-        megaEvolutionsURLs.map((evolutionURL, index) => (
+      {imagemMega ? (
+        imagemMega.map((evolutionURL, index) => (
           <div key={index}>
-            <img alt={name} src={evolutionURL} srcSet={evolutionURL} />
+            <img alt={name} src={evolutionURL} />
 
             <p>Mega {name}</p>
             <span>#{id.padStart(3, "0")}</span>

@@ -56,7 +56,7 @@ export const ButtonGroup = styled.div`
   justify-content: left;
   align-items: center;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1500px) {
     justify-content: left;
 
     flex-direction: column;

@@ -1,7 +1,5 @@
 import { NextPage } from "next";
 
-import "react-lazy-load-image-component/src/effects/blur.css";
-
 import * as Styled from "../../styles/Type";
 interface ImagePokemonProps {
   type1: string;

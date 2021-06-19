@@ -8,12 +8,20 @@ const DescricaoPokemonContainer: NextPage<Status> = ({
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
+  isAlola,
+  isGmax,
+  isGalarian,
+  isMega,
 }) => {
   return (
     <Tabs
+      isAlola={isAlola}
       pokemonAbilities={pokemonAbilities}
       pokemonStatus={pokemonStatus}
       pokemonData={pokemonData}
+      isGmax={isGmax}
+      isGalarian={isGalarian}
+      isMega={isMega}
     />
   );
 };
