@@ -1,30 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Pokédex</h1>
+<p align="center">Uma Pokédex feita em NextJS</p>
 
-## Getting Started
+<h1 align="center">
+    <img src="https://img.shields.io/static/v1?label=Autor&message=Guilherme_Felipe&color=7159c1&style=for-the-badge&logo=ghost"/>
+    <img src="https://img.shields.io/static/v1?label=Progresso&message=Beta&color=informational&style=for-the-badge&logo=ghost"/>
+    <img src="https://img.shields.io/badge/-@glhermme-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/glhermme">
+</h1>
 
-First, run the development server:
+<p align="center">
+ <a href="#-objetivo">Objetivo</a> •
+ <a href="#-como-utilizar">Como Utilizar</a> •	
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-licença">Licença</a> • 
+ <a href="#-autor">Autor</a>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<h4 align="center"> 
+	🚧  Elevando para o próximo level.  🚧
+</h4>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h1 align="center">
+  <img alt="Print tela inicial" title="telaInicial" src="https://github.com/Glerme/Pokedex-React/blob/main/public/telaInicial.png" />
+</h1>
+<br />
+<hr>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### 📈 Objetivo
 
-## Learn More
+Criada com objetivo de aprender mais de React e NextJS.
+Ela possui todos os Pokémons, incluindo formas alternativas.
 
-To learn more about Next.js, take a look at the following resources:
+<br />
+<hr>
+ 
+### 📝 Como utilizar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Busque o Pokémon desejado pelo nome ou seu número na Pokedéx, ou se desejar, veja os diversos pokémons que estão na tela inicial da aplicação.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+A Aplicação requer o .env para utiliza-lá corretamente.
+Crie um arquivo .env e utilize as URLS abaixo:
 
-## Deploy on Vercel
+    API_URL=https://pokeapi.co/api/v2/
+    IMAGE_API_URL=https://raw.githubusercontent.com/Glerme/Pokemon/master/assets/images/
+    IMAGE_API_TYPE_URL=https://raw.githubusercontent.com/Glerme/Pokemon/master/assets/Others/type-icons/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br />
+<hr>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Typescript](https://www.typescriptlang.org)
+- [Next.Js](https://nextjs.org)
+- [React Js](https://pt-br.reactjs.org)
+- [Styled Components](https://styled-components.com)
+
+<br>
+
+## 📎 Licença
+
+Este projeto está sobre a licença MIT.
+
+<br>
+
+### 👦 Autor
+
+---
+
+<a href="https://glerme.github.io">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/Glerme" width="100px;" alt="Perfil"/>
+ <br />
+ <sub><b>Guilherme Felipe</b></sub></a>
+
+Feito com ❤️ por Guilherme Felipe 👋🏽 Entre em contato!
+
+[![Twitter Badge](https://img.shields.io/badge/-@glhermme-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/glhermme)](https://twitter.com/glhermme) [![Linkedin Badge](https://img.shields.io/badge/-Guilherme-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/glerme/)](https://www.linkedin.com/in/glerme/)
+[![Gmail Badge](https://img.shields.io/badge/-guiggff@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:guiggff@gmail.com)](mailto:guiggff@gmail.com)

@@ -39,14 +39,16 @@ const Pokemon: NextPage<PokemonProps> = ({
   const { addLoader, isLoader, removeLoader } = useLoader();
 
   const isAlola = !!pokemonData.name.match(/alola/g);
-
-  console.log("pokemonData.name", isAlola);
+  const isGmax = !!pokemonData.name.match(/gmax/g);
+  const isGalarian = !!pokemonData.name.match(/galar/g);
+  const isMega = !!pokemonData.name.match(/Mega/g);
 
   return (
     <>
       <Head>
         <title>
-          Pokedex | {pokemonData.name.toUpperCase()} - #{pokemonData.id}
+          Pokedex | {pokemonData.name.toUpperCase()} - #
+          {pokemonData.id.toString().padStart(3, "0")}
         </title>
       </Head>
       <Header />
@@ -63,6 +65,8 @@ const Pokemon: NextPage<PokemonProps> = ({
                   colorPkm={pokemonData?.types[0].type.name}
                   name={pokemonData?.name}
                   alolan={isAlola}
+                  isGmax={isGmax}
+                  isGalarian={isGalarian}
                 />
                 <TipoPokemon
                   type1={pokemonData?.types[0].type.name}
@@ -73,6 +77,10 @@ const Pokemon: NextPage<PokemonProps> = ({
                 pokemonAbilities={pokemonAbilities}
                 pokemonStatus={pokemonStatus}
                 pokemonData={pokemonData}
+                isAlola={isAlola}
+                isGmax={isGmax}
+                isGalarian={isGalarian}
+                isMega={isMega}
               />
             </>
           )}

@@ -4,9 +4,11 @@ import { useCallback, useState } from "react";
 import * as Styled from "../../styles/Tabs";
 
 import { Status } from "../../types/PokemonTypes";
-import { makeURLAlola } from "../../utils/getPokemonImages";
+import AlolaContainer from "../AlolaContainer";
 
 import EvolucoesContainer from "../EvolucoesContainer";
+import GalarianContainer from "../GalarianContainer";
+import GigantamaxContainer from "../GigantamaxContainer";
 import MegaEvolucaoContainer from "../MegaEvolucaoContainer";
 import ProgressBar from "../ProgressBar";
 
@@ -14,13 +16,19 @@ const Tabs: NextPage<Status> = ({
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
+  isAlola,
+  isGmax,
+  isMega,
+  isGalarian,
 }) => {
   const types = [
     "Abilities",
     "Status",
     "Evolutions",
     "Mega-Evolution",
+    "Gigantamax",
     "Alolan",
+    "Galarian",
   ];
   const [active, setActive] = useState(types[0]);
 
@@ -102,13 +110,31 @@ const Tabs: NextPage<Status> = ({
           <MegaEvolucaoContainer
             id={pokemonData.id.toString()}
             name={pokemonData.name}
+            isMega={isMega}
           />
         )}
 
         {active === types[4] && (
-          <img
-            src={makeURLAlola(pokemonData.name || pokemonData.id.toString())}
-            alt=""
+          <GigantamaxContainer
+            isGmax={isGmax}
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+          />
+        )}
+
+        {active === types[5] && (
+          <AlolaContainer
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+            isAlola={isAlola}
+          />
+        )}
+
+        {active === types[6] && (
+          <GalarianContainer
+            id={pokemonData.id.toString()}
+            name={pokemonData.name}
+            isGalar={isGalarian}
           />
         )}
       </Styled.ContainerStatus>
