@@ -6,6 +6,7 @@ import { useState } from "react";
 import PageLoader from "../components/PageLoader";
 
 import GlobalStyle from "../styles/global";
+import { LoaderProvider } from "../hooks/loader";
 
 function MyApp({ Component, pageProps }) {
   const [isPageLoader, setIsPageLoader] = useState(false);
@@ -34,7 +35,10 @@ function MyApp({ Component, pageProps }) {
 
       <GlobalStyle />
       {isPageLoader && <PageLoader />}
-      <Component {...pageProps} />
+
+      <LoaderProvider>
+        <Component {...pageProps} />
+      </LoaderProvider>
     </>
   );
 }
