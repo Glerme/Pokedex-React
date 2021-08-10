@@ -9,7 +9,7 @@ import { fetchPokemons } from "../utils/fetchPokemons";
 import Loader from "../components/Loader";
 import CardInicialUnico from "../components/CardInicialUnico";
 
-import { Container } from "../styles/Index";
+import { Container } from "../styles/pages/Home";
 
 const Home: NextPage = ({ children }) => {
   const [pokes, setPokes] = useState<PokemonSpeciesProps[]>([]);

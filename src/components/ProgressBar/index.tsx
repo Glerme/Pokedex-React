@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import * as Styled from "../../styles/ProgressBar";
+import { Progress, ProgressContainer } from "./styles";
 
 interface ProgressBarProps {
   valueStatus: number;
@@ -9,9 +9,9 @@ interface ProgressBarProps {
 
 const ProgressBar: NextPage<ProgressBarProps> = ({ valueStatus, color }) => {
   return (
-    <Styled.ProgressContainer>
-      <Styled.Progress width={valueStatus} color={color} />
-    </Styled.ProgressContainer>
+    <ProgressContainer>
+      <Progress width={valueStatus} color={color} />
+    </ProgressContainer>
   );
 };
 

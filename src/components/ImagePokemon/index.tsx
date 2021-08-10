@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
-import * as Styled from "../../styles/ImagePokemon";
+import { ContainerImage } from "./styles";
 import { makeURL } from "../../utils/getPokemonImages";
 
 interface ImagePokemonProps {
@@ -53,12 +53,12 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
   }, [idPokemonSprite]);
 
   return (
-    <Styled.ContainerImage bgColor={colorPkm} {...rest}>
+    <ContainerImage bgColor={colorPkm} {...rest}>
       <div>
         <img src={pokemonImg} alt={name} />
         <div></div>
       </div>
-    </Styled.ContainerImage>
+    </ContainerImage>
   );
 };
 

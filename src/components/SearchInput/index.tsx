@@ -6,7 +6,7 @@ import { useField } from "@unform/core";
 
 import { ImSearch } from "react-icons/im";
 
-import * as Styled from "../../styles/SearchInput";
+import { SearchContainer } from "./styles";
 
 interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -33,7 +33,7 @@ const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Styled.SearchContainer>
+    <SearchContainer>
       <input
         name={name}
         placeholder="Buscar"
@@ -45,7 +45,7 @@ const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
       <button type="submit" aria-label="Buscar">
         <ImSearch size={24} />
       </button>
-    </Styled.SearchContainer>
+    </SearchContainer>
   );
 };
 

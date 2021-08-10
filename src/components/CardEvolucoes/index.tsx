@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { PokemonSpeciesProps } from "../../types/PokemonTypes";
 
-import * as Styled from "../../styles/CardEvolution";
+import { ContainerCardEvolution } from "./styles";
 export interface CardEvolutions {
   nameImgPokemon: PokemonSpeciesProps[];
 }
@@ -9,7 +9,7 @@ export interface CardEvolutions {
 const CardEvolucoes: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
   return (
     <>
-      <Styled.ContainerCardEvolution>
+      <ContainerCardEvolution>
         {nameImgPokemon.map((pokemon, index) => (
           <div key={index}>
             <header>
@@ -22,7 +22,7 @@ const CardEvolucoes: NextPage<CardEvolutions> = ({ nameImgPokemon }) => {
             </footer>
           </div>
         ))}
-      </Styled.ContainerCardEvolution>
+      </ContainerCardEvolution>
     </>
   );
 };

@@ -14,7 +14,7 @@ import { chainEvo } from "../../utils/chainEvo";
 
 import CardEvolucoes from "../CardEvolucoes";
 
-import * as Styled from "../../styles/Evolution";
+import { EvolutionContainer } from "./styles";
 
 const EvolucoesContainer: NextPage<EvolutionsData> = ({ pokemonData }) => {
   const [nameImgPokemon, setNameImgPokemon] = useState<PokemonSpeciesProps[]>(
@@ -44,9 +44,9 @@ const EvolucoesContainer: NextPage<EvolutionsData> = ({ pokemonData }) => {
   }, []);
 
   return (
-    <Styled.EvolutionContainer>
+    <EvolutionContainer>
       <CardEvolucoes nameImgPokemon={nameImgPokemon} />
-    </Styled.EvolutionContainer>
+    </EvolutionContainer>
   );
 };
 

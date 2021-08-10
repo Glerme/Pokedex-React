@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import * as Styled from "../../styles/Type";
+import { ContainerTypes, TypeOne, TypeTwo } from "./styles";
 interface ImagePokemonProps {
   type1: string;
   type2: string;
@@ -8,27 +8,27 @@ interface ImagePokemonProps {
 
 const TipoPokemon: NextPage<ImagePokemonProps> = ({ type1, type2 }) => {
   return (
-    <Styled.ContainerTypes>
+    <ContainerTypes>
       <div>
-        <Styled.TypeOne tipo1={type1}>
+        <TypeOne tipo1={type1}>
           <img alt={type1} src={`/pokemonTypes/${type1}.svg`} />
 
           {type1}
-        </Styled.TypeOne>
+        </TypeOne>
       </div>
 
       {type2 ? (
         <div>
-          <Styled.TypeTwo tipo2={type2}>
+          <TypeTwo tipo2={type2}>
             <img alt={type2} src={`/pokemonTypes/${type2}.svg`} />
 
             {type2}
-          </Styled.TypeTwo>
+          </TypeTwo>
         </div>
       ) : (
         <></>
       )}
-    </Styled.ContainerTypes>
+    </ContainerTypes>
   );
 };
 

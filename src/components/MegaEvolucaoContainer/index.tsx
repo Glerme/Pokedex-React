@@ -4,7 +4,7 @@ import CardMegaEvolucao from "../CardMegaEvolucao";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
-import * as Styled from "../../styles/MegaEvolution";
+import { MegaEvolutionContainer } from "./styles";
 
 const MegaEvolucaoContainer: NextPage<EvolutionProps> = ({
   id,
@@ -12,9 +12,9 @@ const MegaEvolucaoContainer: NextPage<EvolutionProps> = ({
   isMega,
 }) => {
   return (
-    <Styled.MegaEvolutionContainer>
+    <MegaEvolutionContainer>
       <CardMegaEvolucao id={id} name={name} isMega={isMega} />
-    </Styled.MegaEvolutionContainer>
+    </MegaEvolutionContainer>
   );
 };
 

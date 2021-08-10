@@ -11,7 +11,7 @@ import SearchInput from "../SearchInput";
 
 import { MdArrowBack } from "react-icons/md";
 
-import * as Styled from "../../styles/Header";
+import { HeaderContainer } from "./styles";
 
 const Header: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
@@ -35,7 +35,7 @@ const Header: NextPage = () => {
   }, []);
 
   return (
-    <Styled.Header>
+    <HeaderContainer>
       <section>
         {back && (
           <div onClick={() => router.push("/")}>
@@ -49,7 +49,7 @@ const Header: NextPage = () => {
       <Form ref={formRef} onSubmit={handleSubmit}>
         <SearchInput name="nomePokemon" />
       </Form>
-    </Styled.Header>
+    </HeaderContainer>
   );
 };
 

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import * as Styled from "../../styles/GalarianContainer";
+import { Container } from "./styles";
 import { GalarContainerProps } from "../../types/PokemonGalar";
 import GalarianCard from "../GalarianCard";
 
@@ -10,9 +10,9 @@ const GalarianContainer: NextPage<GalarContainerProps> = ({
   name,
 }) => {
   return (
-    <Styled.GalarianContainer>
+    <Container>
       <GalarianCard id={id} isGalar={isGalar} name={name} />
-    </Styled.GalarianContainer>
+    </Container>
   );
 };
 

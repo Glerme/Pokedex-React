@@ -1,12 +1,12 @@
 import { NextComponentType } from "next";
 
-import * as Styled from "../../styles/PageLoader";
+import { PageLoaderContainer, PageLoaderFrame } from "./styles";
 
 const PageLoader: NextComponentType = () => {
   return (
-    <Styled.PageLoaderContainer>
-      <Styled.PageLoaderFrame />
-    </Styled.PageLoaderContainer>
+    <PageLoaderContainer>
+      <PageLoaderFrame />
+    </PageLoaderContainer>
   );
 };
 

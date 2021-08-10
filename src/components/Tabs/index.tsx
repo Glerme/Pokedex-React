@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import { useCallback, useState } from "react";
 
-import * as Styled from "../../styles/Tabs";
+import { ButtonGroup, ContainerStatus, Content, Tab } from "./styles";
 
 import { Status } from "../../types/PokemonTypes";
 import AlolaContainer from "../AlolaContainer";
 
 import EvolucoesContainer from "../EvolucoesContainer";
-import GalarianContainer from "../GalarianContainer";
+import Container from "../GalarianContainer";
 import GigantamaxContainer from "../GigantamaxContainer";
 import MegaEvolucaoContainer from "../MegaEvolucaoContainer";
 import ProgressBar from "../ProgressBar";
@@ -54,21 +54,21 @@ const Tabs: NextPage<Status> = ({
 
   return (
     <>
-      <Styled.ContainerStatus>
-        <Styled.ButtonGroup>
+      <ContainerStatus>
+        <ButtonGroup>
           {types.map((type) => (
-            <Styled.Tab
+            <Tab
               key={type}
               active={active === type}
               onClick={() => setActive(type)}
             >
               {type}
-            </Styled.Tab>
+            </Tab>
           ))}
-        </Styled.ButtonGroup>
+        </ButtonGroup>
 
         {active === types[0] && (
-          <Styled.Content>
+          <Content>
             {pokemonAbilities &&
               pokemonAbilities.map(({ key, abilities }) => (
                 <div key={key}>
@@ -81,11 +81,11 @@ const Tabs: NextPage<Status> = ({
                   ))}
                 </div>
               ))}
-          </Styled.Content>
+          </Content>
         )}
 
         {active === types[1] && (
-          <Styled.Content>
+          <Content>
             {pokemonStatus &&
               pokemonStatus.map((status, index) => (
                 <div key={index}>
@@ -99,7 +99,7 @@ const Tabs: NextPage<Status> = ({
                   </p>
                 </div>
               ))}
-          </Styled.Content>
+          </Content>
         )}
 
         {active === types[2] && (
@@ -131,13 +131,13 @@ const Tabs: NextPage<Status> = ({
         )}
 
         {active === types[6] && (
-          <GalarianContainer
+          <Container
             id={pokemonData.id.toString()}
             name={pokemonData.name}
             isGalar={isGalarian}
           />
         )}
-      </Styled.ContainerStatus>
+      </ContainerStatus>
     </>
   );
 };

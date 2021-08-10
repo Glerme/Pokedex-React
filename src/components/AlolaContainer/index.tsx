@@ -1,7 +1,9 @@
 import { NextPage } from "next";
 
-import * as Styled from "../../styles/AlolaContainer";
+import { Container } from "./styles";
+
 import { AlolaContainerProps } from "../../types/PokemonAlola";
+
 import AlolaCard from "../AlolaCard";
 
 const AlolaContainer: NextPage<AlolaContainerProps> = ({
@@ -10,9 +12,9 @@ const AlolaContainer: NextPage<AlolaContainerProps> = ({
   isAlola,
 }) => {
   return (
-    <Styled.AlolaContainer>
+    <Container>
       <AlolaCard id={id} name={name} isAlola={isAlola} />
-    </Styled.AlolaContainer>
+    </Container>
   );
 };
 

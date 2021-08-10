@@ -6,7 +6,7 @@ import { makeURL, makeURLM, makeURlMega } from "../../utils/getPokemonImages";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
-import * as Styled from "../../styles/MegaEvolutionCard";
+import { MegaEvolutionCardContainer } from "./styles";
 
 const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name, isMega }) => {
   const [imagemMega, setImagemMega] = useState<string[]>();
@@ -42,7 +42,7 @@ const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name, isMega }) => {
   }, []);
 
   return (
-    <Styled.MegaEvolutionCardContainer>
+    <MegaEvolutionCardContainer>
       {imagemMega ? (
         imagemMega.map((evolutionURL, index) => (
           <div key={index}>
@@ -55,7 +55,7 @@ const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name, isMega }) => {
       ) : (
         <p>Nenhuma Mega Evolução.</p>
       )}
-    </Styled.MegaEvolutionCardContainer>
+    </MegaEvolutionCardContainer>
   );
 };
 

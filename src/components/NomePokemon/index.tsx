@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import * as Styled from "../../styles/NamePokemon";
+import { ContainerPokemon } from "./styles";
 import { formatId } from "../../utils/formatId";
 
 interface NamePokemonProps {
@@ -12,10 +12,10 @@ const NomePokemon: NextPage<NamePokemonProps> = ({ id, name }) => {
   const newId = formatId(id);
 
   return (
-    <Styled.ContainerPokemon>
+    <ContainerPokemon>
       <h3>{name}</h3>
       <span>#{newId}</span>
-    </Styled.ContainerPokemon>
+    </ContainerPokemon>
   );
 };
 

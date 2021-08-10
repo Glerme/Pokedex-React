@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
-import * as Styled from "../../styles/CardGigantamax";
+import { CardContainer } from "./styles";
 import { GmaxContainerProps } from "../../types/PokemonGmax";
 import { makeURL, makeURLGmax } from "../../utils/getPokemonImages";
 
@@ -39,7 +39,7 @@ const CardGigantamax: NextPage<GmaxContainerProps> = ({ id, isGmax, name }) => {
   }, []);
   console.log("gmax", gmax);
   return (
-    <Styled.CardContainer>
+    <CardContainer>
       {gmax ? (
         <>
           <img src={gmax} />
@@ -49,7 +49,7 @@ const CardGigantamax: NextPage<GmaxContainerProps> = ({ id, isGmax, name }) => {
       ) : (
         <p>Não possui Gmax</p>
       )}
-    </Styled.CardContainer>
+    </CardContainer>
   );
 };
 

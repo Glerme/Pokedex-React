@@ -11,7 +11,7 @@ const TranslateX = keyframes`
   }
 `;
 
-export const GigantamaxContainer = styled.div`
+export const Container = styled.div`
   min-height: 50%;
   animation: ${TranslateX} 0.5s ease-in-out;
 `;

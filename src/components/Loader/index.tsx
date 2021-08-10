@@ -1,7 +1,7 @@
 import { NextComponentType } from "next";
 
-import * as Styled from "../../styles/Loader";
+import { LoaderContainer } from "./styles";
 
-const Loader: NextComponentType = () => <Styled.LoaderContainer />;
+const Loader: NextComponentType = () => <LoaderContainer />;
 
 export default Loader;

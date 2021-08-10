@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import { CardContainer } from "../../styles/AlolaCard";
+import { CardContainer } from "./styles";
 
 import { GalarContainerProps } from "../../types/PokemonGalar";
 

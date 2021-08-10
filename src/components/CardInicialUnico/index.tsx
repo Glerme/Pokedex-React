@@ -6,7 +6,7 @@ import { useLoader } from "../../hooks/loader";
 
 import Loader from "../Loader";
 
-import * as Styled from "../../styles/CardInicialUnico";
+import { ContainerCard, Tipos } from "./styles";
 import { useCallback, useEffect, useState } from "react";
 import { getPokemonImage, makeURL } from "../../utils/getPokemonImages";
 
@@ -68,7 +68,7 @@ const CardInicialUnico: NextPage<Card> = ({
         <Loader />
       ) : (
         <Link href={`/pokemon/${poke.id}`}>
-          <Styled.ContainerCard
+          <ContainerCard
             tipo1={poke.types && poke.types[0]}
             tipo2={poke.types && poke.types[1]}
           >
@@ -82,12 +82,12 @@ const CardInicialUnico: NextPage<Card> = ({
             <footer>
               {poke.types &&
                 poke.types.map((type, index) => (
-                  <Styled.Tipos key={index} tipo1={type}>
+                  <Tipos key={index} tipo1={type}>
                     <img src={`/pokemonTypes/${type}.svg`} alt={type} />
-                  </Styled.Tipos>
+                  </Tipos>
                 ))}
             </footer>
-          </Styled.ContainerCard>
+          </ContainerCard>
         </Link>
       )}
     </>
