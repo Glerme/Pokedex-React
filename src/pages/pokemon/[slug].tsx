@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 
 import { getPokemonImage } from "../../utils/getPokemonImages";
 
-import * as Styled from "../../styles/Home";
+import { Container } from "./styles";
 
 import { api } from "../../services/api";
 
@@ -58,7 +58,7 @@ const Pokemon: NextPage<PokemonProps> = ({
             <Loader />
           ) : (
             <>
-              <Styled.ContainerCardPokemon>
+              <Container>
                 <NomePokemon name={pokemonData?.name} id={pokemonData?.id} />
                 <ImagePokemon
                   idPokemonSprite={getPokemonImage(pokemonData?.id)}
@@ -72,7 +72,7 @@ const Pokemon: NextPage<PokemonProps> = ({
                   type1={pokemonData?.types[0].type.name}
                   type2={pokemonData.types[1]?.type.name}
                 />
-              </Styled.ContainerCardPokemon>
+              </Container>
               <DescricaoPokemonContainer
                 pokemonAbilities={pokemonAbilities}
                 pokemonStatus={pokemonStatus}
