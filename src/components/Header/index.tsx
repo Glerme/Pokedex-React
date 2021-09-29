@@ -7,11 +7,13 @@ import { FormHandles } from "@unform/core";
 
 import { MdArrowBack } from "react-icons/md";
 
-import { SearchProps } from "../../types/PokemonTypes";
-
 import { SearchInput } from "../SearchInput";
 
 import { HeaderContainer } from "./styles";
+
+interface SearchProps {
+  nomePokemon: string;
+}
 
 export const Header: NextPage = () => {
   const formRef = useRef<FormHandles>(null);

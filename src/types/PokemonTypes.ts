@@ -1,7 +1,3 @@
-export interface SearchProps {
-  nomePokemon: string;
-}
-
 export interface Sprites {
   back_default: string;
   back_female: string;
@@ -37,7 +33,6 @@ export interface PokemonData {
 
 export interface Status {
   idPokemon: number;
-
   pokemonStatus: PokemonStatusProps[];
   pokemonAbilities: PokemonAbilitiesProps[];
   pokemonData: PokemonData;
