@@ -22,8 +22,6 @@ const Home: NextPage<HomeProps> = ({ pokemons }) => {
   const [pokePerPage, setPokePerPage] = useState(10);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const { isLoader, removeLoader, addLoader } = useLoader();
-
   const handleScroll = async () => {
     const position = window.pageYOffset;
     const maxTop = document.body.scrollHeight;
@@ -34,14 +32,9 @@ const Home: NextPage<HomeProps> = ({ pokemons }) => {
 
     if (position > valorNovo) {
       try {
-        addLoader();
-
         const newPokemons = await fetchPokemons(pokes.length);
         setPokes([...pokes, ...newPokemons]);
-
-        removeLoader();
       } catch (error) {
-        removeLoader();
         console.error(error);
       }
     }

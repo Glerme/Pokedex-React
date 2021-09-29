@@ -1,6 +1,8 @@
 import { api } from "../services/api";
-import { PokemonSpeciesProps } from "../types/PokemonTypes";
+
 import { getPokemonSpecies } from "./chainEvo";
+
+import { PokemonSpeciesProps } from "../types/PokemonTypes";
 
 export const fetchPokemons = async (offset: number) => {
   const { data: pokemons } = await api.get(
