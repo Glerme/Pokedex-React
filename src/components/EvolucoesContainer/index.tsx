@@ -12,11 +12,13 @@ import {
 
 import { chainEvo } from "../../utils/chainEvo";
 
-import CardEvolucoes from "../CardEvolucoes";
+import { CardEvolucoes } from "../CardEvolucoes";
 
 import { EvolutionContainer } from "./styles";
 
-const EvolucoesContainer: NextPage<EvolutionsData> = ({ pokemonData }) => {
+export const EvolucoesContainer: NextPage<EvolutionsData> = ({
+  pokemonData,
+}) => {
   const [nameImgPokemon, setNameImgPokemon] = useState<PokemonSpeciesProps[]>(
     []
   );
@@ -49,5 +51,3 @@ const EvolucoesContainer: NextPage<EvolutionsData> = ({ pokemonData }) => {
     </EvolutionContainer>
   );
 };
-
-export default EvolucoesContainer;

@@ -2,9 +2,9 @@ import { NextPage } from "next";
 
 import { Container } from "./styles";
 import { GalarContainerProps } from "../../types/PokemonGalar";
-import GalarianCard from "../GalarianCard";
+import { GalarianCard } from "../GalarianCard";
 
-const GalarianContainer: NextPage<GalarContainerProps> = ({
+export const GalarianContainer: NextPage<GalarContainerProps> = ({
   id,
   isGalar,
   name,
@@ -15,5 +15,3 @@ const GalarianContainer: NextPage<GalarContainerProps> = ({
     </Container>
   );
 };
-
-export default GalarianContainer;

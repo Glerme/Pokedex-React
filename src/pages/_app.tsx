@@ -1,12 +1,12 @@
 import Head from "next/head";
+import { useState } from "react";
 import Router from "next/dist/next-server/lib/router/router";
 
-import { useState } from "react";
+import { PageLoader } from "../components/PageLoader";
 
-import PageLoader from "../components/PageLoader";
+import { LoaderProvider } from "../hooks/loader";
 
 import GlobalStyle from "../styles/global";
-import { LoaderProvider } from "../hooks/loader";
 
 function MyApp({ Component, pageProps }) {
   const [isPageLoader, setIsPageLoader] = useState(false);

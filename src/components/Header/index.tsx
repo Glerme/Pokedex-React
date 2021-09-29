@@ -1,19 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-
-import { SearchProps } from "../../types/PokemonTypes";
-
-import SearchInput from "../SearchInput";
+import { FormHandles } from "@unform/core";
 
 import { MdArrowBack } from "react-icons/md";
 
+import { SearchProps } from "../../types/PokemonTypes";
+
+import { SearchInput } from "../SearchInput";
+
 import { HeaderContainer } from "./styles";
 
-const Header: NextPage = () => {
+export const Header: NextPage = () => {
   const formRef = useRef<FormHandles>(null);
   const router = useRouter();
   const [back, setBack] = useState(false);
@@ -52,5 +52,3 @@ const Header: NextPage = () => {
     </HeaderContainer>
   );
 };
-
-export default Header;

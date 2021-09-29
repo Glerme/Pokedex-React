@@ -1,17 +1,9 @@
+import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
-
-import NomePokemon from "../../components/NomePokemon";
-import TipoPokemon from "../../components/TipoPokemon";
-import DescricaoPokemonContainer from "../../components/DescricaoPokemonContainer";
-import ImagePokemon from "../../components/ImagePokemon";
-import Header from "../../components/Header";
-
-import { getPokemonImage } from "../../utils/getPokemonImages";
-
-import { Container } from "./styles";
 
 import { api } from "../../services/api";
 
+import { getPokemonImage } from "../../utils/getPokemonImages";
 import { formatAbilities } from "../../utils/formatAbilities";
 
 import {
@@ -20,9 +12,14 @@ import {
   PokemonData,
   PokemonStatusProps,
 } from "../../types/PokemonTypes";
-import Head from "next/head";
-import { useLoader } from "../../hooks/loader";
-import Loader from "../../components/Loader";
+
+import { Header } from "../../components/Header";
+import { NomePokemon } from "../../components/NomePokemon";
+import { TipoPokemon } from "../../components/TipoPokemon";
+import { ImagePokemon } from "../../components/ImagePokemon";
+import { DescricaoPokemonContainer } from "../../components/DescricaoPokemonContainer";
+
+import { Container } from "./styles";
 
 interface PokemonProps {
   pokemonData: PokemonData;
@@ -36,8 +33,6 @@ const Pokemon: NextPage<PokemonProps> = ({
   pokemonStatus,
   pokemonAbilities,
 }) => {
-  const { addLoader, isLoader, removeLoader } = useLoader();
-
   const isAlola = !!pokemonData.name.match(/alola/g);
   const isGmax = !!pokemonData.name.match(/gmax/g);
   const isGalarian = !!pokemonData.name.match(/galar/g);
@@ -54,36 +49,30 @@ const Pokemon: NextPage<PokemonProps> = ({
       <Header />
       {pokemonData && (
         <>
-          {isLoader ? (
-            <Loader />
-          ) : (
-            <>
-              <Container>
-                <NomePokemon name={pokemonData?.name} id={pokemonData?.id} />
-                <ImagePokemon
-                  idPokemonSprite={getPokemonImage(pokemonData?.id)}
-                  colorPkm={pokemonData?.types[0].type.name}
-                  name={pokemonData?.name}
-                  alolan={isAlola}
-                  isGmax={isGmax}
-                  isGalarian={isGalarian}
-                />
-                <TipoPokemon
-                  type1={pokemonData?.types[0].type.name}
-                  type2={pokemonData.types[1]?.type.name}
-                />
-              </Container>
-              <DescricaoPokemonContainer
-                pokemonAbilities={pokemonAbilities}
-                pokemonStatus={pokemonStatus}
-                pokemonData={pokemonData}
-                isAlola={isAlola}
-                isGmax={isGmax}
-                isGalarian={isGalarian}
-                isMega={isMega}
-              />
-            </>
-          )}
+          <Container>
+            <NomePokemon name={pokemonData.name} id={pokemonData.id} />
+            <ImagePokemon
+              idPokemonSprite={getPokemonImage(pokemonData?.id)}
+              colorPkm={pokemonData.types[0].type.name}
+              name={pokemonData.name}
+              alolan={isAlola}
+              isGmax={isGmax}
+              isGalarian={isGalarian}
+            />
+            <TipoPokemon
+              type1={pokemonData.types[0].type.name}
+              type2={pokemonData.types[1]?.type.name}
+            />
+          </Container>
+          <DescricaoPokemonContainer
+            pokemonAbilities={pokemonAbilities}
+            pokemonStatus={pokemonStatus}
+            pokemonData={pokemonData}
+            isAlola={isAlola}
+            isGmax={isGmax}
+            isGalarian={isGalarian}
+            isMega={isMega}
+          />
         </>
       )}
     </>

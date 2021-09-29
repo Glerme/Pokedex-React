@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 
-import CardMegaEvolucao from "../CardMegaEvolucao";
+import { CardMegaEvolucao } from "../CardMegaEvolucao";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
 import { MegaEvolutionContainer } from "./styles";
 
-const MegaEvolucaoContainer: NextPage<EvolutionProps> = ({
+export const MegaEvolucaoContainer: NextPage<EvolutionProps> = ({
   id,
   name,
   isMega,
@@ -17,5 +17,3 @@ const MegaEvolucaoContainer: NextPage<EvolutionProps> = ({
     </MegaEvolutionContainer>
   );
 };
-
-export default MegaEvolucaoContainer;

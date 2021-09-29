@@ -12,7 +12,7 @@ interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
-const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
+export const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, registerField } = useField(name);
 
@@ -48,5 +48,3 @@ const SearchInput: NextPage<SearchInputProps> = ({ name, ...rest }) => {
     </SearchContainer>
   );
 };
-
-export default SearchInput;

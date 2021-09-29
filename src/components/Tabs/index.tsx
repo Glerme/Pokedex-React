@@ -1,18 +1,18 @@
 import { NextPage } from "next";
 import { useCallback, useState } from "react";
 
+import { Status } from "../../types/PokemonTypes";
+
+import { ProgressBar } from "../ProgressBar";
+import { AlolaContainer } from "../AlolaContainer";
+import { GalarianContainer } from "../GalarianContainer";
+import { EvolucoesContainer } from "../EvolucoesContainer";
+import { GigantamaxContainer } from "../GigantamaxContainer";
+import { MegaEvolucaoContainer } from "../MegaEvolucaoContainer";
+
 import { ButtonGroup, ContainerStatus, Content, Tab } from "./styles";
 
-import { Status } from "../../types/PokemonTypes";
-import AlolaContainer from "../AlolaContainer";
-
-import EvolucoesContainer from "../EvolucoesContainer";
-import Container from "../GalarianContainer";
-import GigantamaxContainer from "../GigantamaxContainer";
-import MegaEvolucaoContainer from "../MegaEvolucaoContainer";
-import ProgressBar from "../ProgressBar";
-
-const Tabs: NextPage<Status> = ({
+export const Tabs: NextPage<Status> = ({
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
@@ -53,93 +53,87 @@ const Tabs: NextPage<Status> = ({
   }, []);
 
   return (
-    <>
-      <ContainerStatus>
-        <ButtonGroup>
-          {types.map((type) => (
-            <Tab
-              key={type}
-              active={active === type}
-              onClick={() => setActive(type)}
-            >
-              {type}
-            </Tab>
-          ))}
-        </ButtonGroup>
+    <ContainerStatus>
+      <ButtonGroup>
+        {types.map((type) => (
+          <Tab
+            key={type}
+            active={active === type}
+            onClick={() => setActive(type)}
+          >
+            {type}
+          </Tab>
+        ))}
+      </ButtonGroup>
 
-        {active === types[0] && (
-          <Content>
-            {pokemonAbilities &&
-              pokemonAbilities.map(({ key, abilities }) => (
-                <div key={key}>
-                  {key}
-                  {abilities.map((ability, index) => (
-                    <p key={index}>
-                      <br />
-                      <span>{ability}</span>
-                    </p>
-                  ))}
-                </div>
-              ))}
-          </Content>
-        )}
-
-        {active === types[1] && (
-          <Content>
-            {pokemonStatus &&
-              pokemonStatus.map((status, index) => (
-                <div key={index}>
-                  {status.key} <br />
-                  <ProgressBar
-                    valueStatus={status.value}
-                    color={getProgressColor(status.value)}
-                  />
-                  <p>
-                    <span>{status.value}</span>
+      {active === types[0] && (
+        <Content>
+          {pokemonAbilities &&
+            pokemonAbilities.map(({ key, abilities }) => (
+              <div key={key}>
+                {key}
+                {abilities.map((ability, index) => (
+                  <p key={index}>
+                    <br />
+                    <span>{ability}</span>
                   </p>
-                </div>
-              ))}
-          </Content>
-        )}
+                ))}
+              </div>
+            ))}
+        </Content>
+      )}
 
-        {active === types[2] && (
-          <EvolucoesContainer pokemonData={pokemonData} />
-        )}
+      {active === types[1] && (
+        <Content>
+          {pokemonStatus &&
+            pokemonStatus.map((status, index) => (
+              <div key={index}>
+                {status.key} <br />
+                <ProgressBar
+                  valueStatus={status.value}
+                  color={getProgressColor(status.value)}
+                />
+                <p>
+                  <span>{status.value}</span>
+                </p>
+              </div>
+            ))}
+        </Content>
+      )}
 
-        {active === types[3] && (
-          <MegaEvolucaoContainer
-            id={pokemonData.id.toString()}
-            name={pokemonData.name}
-            isMega={isMega}
-          />
-        )}
+      {active === types[2] && <EvolucoesContainer pokemonData={pokemonData} />}
 
-        {active === types[4] && (
-          <GigantamaxContainer
-            isGmax={isGmax}
-            id={pokemonData.id.toString()}
-            name={pokemonData.name}
-          />
-        )}
+      {active === types[3] && (
+        <MegaEvolucaoContainer
+          id={pokemonData.id.toString()}
+          name={pokemonData.name}
+          isMega={isMega}
+        />
+      )}
 
-        {active === types[5] && (
-          <AlolaContainer
-            id={pokemonData.id.toString()}
-            name={pokemonData.name}
-            isAlola={isAlola}
-          />
-        )}
+      {active === types[4] && (
+        <GigantamaxContainer
+          isGmax={isGmax}
+          id={pokemonData.id.toString()}
+          name={pokemonData.name}
+        />
+      )}
 
-        {active === types[6] && (
-          <Container
-            id={pokemonData.id.toString()}
-            name={pokemonData.name}
-            isGalar={isGalarian}
-          />
-        )}
-      </ContainerStatus>
-    </>
+      {active === types[5] && (
+        <AlolaContainer
+          id={pokemonData.id.toString()}
+          name={pokemonData.name}
+          isAlola={isAlola}
+        />
+      )}
+
+      {active === types[6] && (
+        <GalarianContainer
+          id={pokemonData.id.toString()}
+          name={pokemonData.name}
+          isGalar={isGalarian}
+        />
+      )}
+    </ContainerStatus>
   );
 };
-
-export default Tabs;

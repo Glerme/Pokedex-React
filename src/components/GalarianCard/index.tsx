@@ -1,14 +1,19 @@
 import { NextPage } from "next";
+import { useCallback, useEffect, useState } from "react";
 
-import { CardContainer } from "./styles";
+import axios from "axios";
 
 import { GalarContainerProps } from "../../types/PokemonGalar";
 
-import { useCallback, useEffect, useState } from "react";
 import { makeURL, makeURLGalar } from "../../utils/getPokemonImages";
-import axios from "axios";
 
-const GalarianCard: NextPage<GalarContainerProps> = ({ id, isGalar, name }) => {
+import { CardContainer } from "./styles";
+
+export const GalarianCard: NextPage<GalarContainerProps> = ({
+  id,
+  isGalar,
+  name,
+}) => {
   const [galarUrl, setGalarUrl] = useState<string>("");
 
   const getGalar = useCallback(async () => {
@@ -56,5 +61,3 @@ const GalarianCard: NextPage<GalarContainerProps> = ({ id, isGalar, name }) => {
     </>
   );
 };
-
-export default GalarianCard;

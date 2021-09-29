@@ -1,14 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
+import { useCallback, useEffect, useState } from "react";
+
 import axios from "axios";
 
-import { makeURL, makeURLM, makeURlMega } from "../../utils/getPokemonImages";
+import { makeURL, makeURLM } from "../../utils/getPokemonImages";
 
 import { EvolutionProps } from "../../types/PokemonEvolution";
 
 import { MegaEvolutionCardContainer } from "./styles";
 
-const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name, isMega }) => {
+export const CardMegaEvolucao: NextPage<EvolutionProps> = ({
+  id,
+  name,
+  isMega,
+}) => {
   const [imagemMega, setImagemMega] = useState<string[]>();
 
   const getMega = useCallback(async () => {
@@ -58,5 +63,3 @@ const CardMegaEvolucao: NextPage<EvolutionProps> = ({ id, name, isMega }) => {
     </MegaEvolutionCardContainer>
   );
 };
-
-export default CardMegaEvolucao;

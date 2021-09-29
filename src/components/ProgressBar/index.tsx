@@ -7,12 +7,13 @@ interface ProgressBarProps {
   color: string;
 }
 
-const ProgressBar: NextPage<ProgressBarProps> = ({ valueStatus, color }) => {
+export const ProgressBar: NextPage<ProgressBarProps> = ({
+  valueStatus,
+  color,
+}) => {
   return (
     <ProgressContainer>
       <Progress width={valueStatus} color={color} />
     </ProgressContainer>
   );
 };
-
-export default ProgressBar;

@@ -13,7 +13,7 @@ interface ImagePokemonProps {
   isGalarian: boolean;
 }
 
-const ImagePokemon: NextPage<ImagePokemonProps> = ({
+export const ImagePokemon: NextPage<ImagePokemonProps> = ({
   idPokemonSprite,
   colorPkm,
   name,
@@ -56,10 +56,8 @@ const ImagePokemon: NextPage<ImagePokemonProps> = ({
     <ContainerImage bgColor={colorPkm} {...rest}>
       <div>
         <img src={pokemonImg} alt={name} />
-        <div></div>
+        <div />
       </div>
     </ContainerImage>
   );
 };
-
-export default ImagePokemon;

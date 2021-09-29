@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
+import { useCallback, useEffect, useState } from "react";
+
 import axios from "axios";
 
 import { AlolaContainerProps } from "../../types/PokemonAlola";
@@ -8,7 +9,11 @@ import { makeURL, makeURLAlola } from "../../utils/getPokemonImages";
 
 import { CardContainer } from "./styles";
 
-const AlolaCard: NextPage<AlolaContainerProps> = ({ id, name, isAlola }) => {
+export const AlolaCard: NextPage<AlolaContainerProps> = ({
+  id,
+  name,
+  isAlola,
+}) => {
   const [alolanURLS, setAlolanURLS] = useState<string>("");
 
   const getAlolan = useCallback(async () => {
@@ -66,5 +71,3 @@ const AlolaCard: NextPage<AlolaContainerProps> = ({ id, name, isAlola }) => {
     </>
   );
 };
-
-export default AlolaCard;

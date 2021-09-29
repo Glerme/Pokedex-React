@@ -1,39 +1,28 @@
 import Head from "next/head";
-import { NextPage } from "next";
+import { useEffect, useState } from "react";
+import { GetServerSideProps, NextPage } from "next";
 
-import Header from "../components/Header";
-import { useCallback, useEffect, useState } from "react";
 import { useLoader } from "../hooks/loader";
+
 import { PokemonSpeciesProps } from "../types/PokemonTypes";
+
 import { fetchPokemons } from "../utils/fetchPokemons";
-import Loader from "../components/Loader";
-import CardInicialUnico from "../components/CardInicialUnico";
+
+import { Header } from "../components/Header";
+import { CardInicialUnico } from "../components/CardInicialUnico";
 
 import { Container } from "../styles/pages/Home";
 
-const Home: NextPage = ({ children }) => {
-  const [pokes, setPokes] = useState<PokemonSpeciesProps[]>([]);
+interface HomeProps {
+  pokemons: PokemonSpeciesProps[];
+}
+
+const Home: NextPage<HomeProps> = ({ pokemons }) => {
+  const [pokes, setPokes] = useState<PokemonSpeciesProps[]>(pokemons);
   const [pokePerPage, setPokePerPage] = useState(10);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const { isLoader, removeLoader, addLoader } = useLoader();
-
-  const getPokemon = useCallback(async () => {
-    try {
-      addLoader();
-      const pokemons = await fetchPokemons(0);
-
-      setPokes(pokemons);
-      removeLoader();
-    } catch (error) {
-      removeLoader();
-      console.error(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    getPokemon();
-  }, []);
 
   const handleScroll = async () => {
     const position = window.pageYOffset;
@@ -80,24 +69,30 @@ const Home: NextPage = ({ children }) => {
       </Head>
       <Header />
 
-      {isLoader ? (
-        <Loader />
-      ) : (
-        <Container>
-          {pokes.map((pok, index) => (
-            <CardInicialUnico
-              poke={pok}
-              key={index}
-              isAlola={!!pok.name.match(/alola/g)}
-              isGalarian={!!pok.name.match(/galar/g)}
-              isGmax={!!pok.name.match(/gmax/g)}
-              isAlternativeForm={!!pok.name.match(/-/gim)}
-            />
-          ))}
-        </Container>
-      )}
+      <Container>
+        {pokes.map((pok, index) => (
+          <CardInicialUnico
+            poke={pok}
+            key={index}
+            isAlola={!!pok.name.match(/alola/g)}
+            isGalarian={!!pok.name.match(/galar/g)}
+            isGmax={!!pok.name.match(/gmax/g)}
+            isAlternativeForm={!!pok.name.match(/-/gim)}
+          />
+        ))}
+      </Container>
     </>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const pokemons = await fetchPokemons(0);
+
+  return {
+    props: {
+      pokemons,
+    },
+  };
+};

@@ -6,7 +6,11 @@ import { CardContainer } from "./styles";
 import { GmaxContainerProps } from "../../types/PokemonGmax";
 import { makeURL, makeURLGmax } from "../../utils/getPokemonImages";
 
-const CardGigantamax: NextPage<GmaxContainerProps> = ({ id, isGmax, name }) => {
+export const CardGigantamax: NextPage<GmaxContainerProps> = ({
+  id,
+  isGmax,
+  name,
+}) => {
   const [gmax, setGmax] = useState<string>("");
 
   const getGalar = useCallback(async () => {
@@ -37,7 +41,7 @@ const CardGigantamax: NextPage<GmaxContainerProps> = ({ id, isGmax, name }) => {
   useEffect(() => {
     getGalar();
   }, []);
-  console.log("gmax", gmax);
+
   return (
     <CardContainer>
       {gmax ? (
@@ -52,5 +56,3 @@ const CardGigantamax: NextPage<GmaxContainerProps> = ({ id, isGmax, name }) => {
     </CardContainer>
   );
 };
-
-export default CardGigantamax;

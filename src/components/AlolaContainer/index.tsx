@@ -4,9 +4,9 @@ import { Container } from "./styles";
 
 import { AlolaContainerProps } from "../../types/PokemonAlola";
 
-import AlolaCard from "../AlolaCard";
+import { AlolaCard } from "../AlolaCard";
 
-const AlolaContainer: NextPage<AlolaContainerProps> = ({
+export const AlolaContainer: NextPage<AlolaContainerProps> = ({
   id,
   name,
   isAlola,
@@ -17,5 +17,3 @@ const AlolaContainer: NextPage<AlolaContainerProps> = ({
     </Container>
   );
 };
-
-export default AlolaContainer;
