@@ -1,5 +1,10 @@
 import Head from "next/head";
-import { GetServerSideProps, NextPage } from "next";
+import {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from "next";
 
 import { api } from "../../services/api";
 
@@ -79,7 +84,14 @@ const Pokemon: NextPage<PokemonProps> = ({
 
 export default Pokemon;
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
   try {
     const { slug } = ctx.params;
 
@@ -111,6 +123,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         pokemonStatus: parsedStatus,
         pokemonAbilities: formatedAbilities,
       },
+      revalidate: 60 * 60 * 24,
     };
   } catch (error) {
     console.error(error);
