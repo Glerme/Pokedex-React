@@ -1,14 +1,22 @@
-import axios from "axios";
+import Image from "next/image";
 import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
-import { CardContainer } from "./styles";
-import { GmaxContainerProps } from "../../types/PokemonGmax";
+import axios from "axios";
+
 import { makeURL, makeURLGmax } from "../../utils/getPokemonImages";
 
-export const CardGigantamax: NextPage<GmaxContainerProps> = ({
-  id,
+import { CardContainer } from "./styles";
+
+export interface GmaxContainerProps {
+  id: string;
+  name: string;
+  isGmax: boolean;
+}
+
+export const GigantamaxTab: NextPage<GmaxContainerProps> = ({
   isGmax,
+  id,
   name,
 }) => {
   const [gmax, setGmax] = useState<string>("");
@@ -46,7 +54,7 @@ export const CardGigantamax: NextPage<GmaxContainerProps> = ({
     <CardContainer>
       {gmax ? (
         <>
-          <img src={gmax} />
+          <Image src={gmax} width={500} height={500} />
           <p>Gigantamax {name}</p>
           <span>#{id.padStart(3, "0")}</span>
         </>

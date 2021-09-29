@@ -1,15 +1,18 @@
+import axios from "axios";
 import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
-
-import axios from "axios";
-
-import { GalarContainerProps } from "../../types/PokemonGalar";
 
 import { makeURL, makeURLGalar } from "../../utils/getPokemonImages";
 
 import { CardContainer } from "./styles";
 
-export const GalarianCard: NextPage<GalarContainerProps> = ({
+interface GalarContainerProps {
+  id: string;
+  name: string;
+  isGalar: boolean;
+}
+
+export const GalarianTab: NextPage<GalarContainerProps> = ({
   id,
   isGalar,
   name,

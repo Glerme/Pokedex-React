@@ -11,6 +11,11 @@ const TranslateX = keyframes`
   }
 `;
 
+export const MegaEvolutionContainer = styled.div`
+  min-height: 50%;
+  animation: ${TranslateX} 0.5s ease-in-out;
+`;
+
 export const MegaEvolutionCardContainer = styled.div`
   display: flex;
   justify-content: center;

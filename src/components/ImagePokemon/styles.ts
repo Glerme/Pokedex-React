@@ -38,13 +38,13 @@ export const ContainerImage = styled.div<ContainerImageProps>`
     height: 20rem;
   }
 
-  & div {
+  div {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    & > img {
+    img {
       margin: 0.1rem;
       padding: 0.5rem;
 
@@ -54,7 +54,7 @@ export const ContainerImage = styled.div<ContainerImageProps>`
     }
   }
 
-  & div > div {
+  div > div {
     position: absolute;
 
     width: 80%;

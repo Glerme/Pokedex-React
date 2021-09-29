@@ -3,23 +3,24 @@ import { useCallback, useState } from "react";
 
 import { Status } from "../../types/PokemonTypes";
 
+import { AlolaTab } from "../AlolaTab";
 import { ProgressBar } from "../ProgressBar";
-import { AlolaContainer } from "../AlolaContainer";
-import { GalarianContainer } from "../GalarianContainer";
-import { EvolucoesContainer } from "../EvolucoesContainer";
-import { GigantamaxContainer } from "../GigantamaxContainer";
-import { MegaEvolucaoContainer } from "../MegaEvolucaoContainer";
+import { GalarianTab } from "../GalarianTab";
+import { EvolutionsTab } from "../EvolutionsTab";
+import { GigantamaxTab } from "../GigantamaxTab";
+import { MegaEvolutionsTab } from "../MegaEvolutionsTab";
 
 import { ButtonGroup, ContainerStatus, Content, Tab } from "./styles";
 
-export const Tabs: NextPage<Status> = ({
+export const TabContainer: NextPage<Status> = ({
+  idPokemon,
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
   isAlola,
   isGmax,
-  isMega,
   isGalarian,
+  isMega,
 }) => {
   const types = [
     "Abilities",
@@ -30,6 +31,7 @@ export const Tabs: NextPage<Status> = ({
     "Alolan",
     "Galarian",
   ];
+
   const [active, setActive] = useState(types[0]);
 
   const getProgressColor = useCallback((value: number) => {
@@ -101,10 +103,10 @@ export const Tabs: NextPage<Status> = ({
         </Content>
       )}
 
-      {active === types[2] && <EvolucoesContainer pokemonData={pokemonData} />}
+      {active === types[2] && <EvolutionsTab pokemonData={pokemonData} />}
 
       {active === types[3] && (
-        <MegaEvolucaoContainer
+        <MegaEvolutionsTab
           id={pokemonData.id.toString()}
           name={pokemonData.name}
           isMega={isMega}
@@ -112,7 +114,7 @@ export const Tabs: NextPage<Status> = ({
       )}
 
       {active === types[4] && (
-        <GigantamaxContainer
+        <GigantamaxTab
           isGmax={isGmax}
           id={pokemonData.id.toString()}
           name={pokemonData.name}
@@ -120,7 +122,7 @@ export const Tabs: NextPage<Status> = ({
       )}
 
       {active === types[5] && (
-        <AlolaContainer
+        <AlolaTab
           id={pokemonData.id.toString()}
           name={pokemonData.name}
           isAlola={isAlola}
@@ -128,7 +130,7 @@ export const Tabs: NextPage<Status> = ({
       )}
 
       {active === types[6] && (
-        <GalarianContainer
+        <GalarianTab
           id={pokemonData.id.toString()}
           name={pokemonData.name}
           isGalar={isGalarian}

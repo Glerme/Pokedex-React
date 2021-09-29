@@ -17,7 +17,7 @@ import { Header } from "../../components/Header";
 import { NomePokemon } from "../../components/NomePokemon";
 import { TipoPokemon } from "../../components/TipoPokemon";
 import { ImagePokemon } from "../../components/ImagePokemon";
-import { DescricaoPokemonContainer } from "../../components/DescricaoPokemonContainer";
+import { TabContainer } from "../../components/TabContainer";
 
 import { Container } from "./styles";
 
@@ -52,19 +52,17 @@ const Pokemon: NextPage<PokemonProps> = ({
           <Container>
             <NomePokemon name={pokemonData.name} id={pokemonData.id} />
             <ImagePokemon
-              idPokemonSprite={getPokemonImage(pokemonData?.id)}
+              idPokemonSprite={pokemonData.id}
               colorPkm={pokemonData.types[0].type.name}
               name={pokemonData.name}
-              alolan={isAlola}
-              isGmax={isGmax}
-              isGalarian={isGalarian}
             />
             <TipoPokemon
               type1={pokemonData.types[0].type.name}
               type2={pokemonData.types[1]?.type.name}
             />
           </Container>
-          <DescricaoPokemonContainer
+          <TabContainer
+            idPokemon={pokemonData.id}
             pokemonAbilities={pokemonAbilities}
             pokemonStatus={pokemonStatus}
             pokemonData={pokemonData}

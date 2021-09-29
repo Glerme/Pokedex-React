@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 
 import { useLoader } from "../hooks/loader";
 
@@ -9,7 +9,7 @@ import { PokemonSpeciesProps } from "../types/PokemonTypes";
 import { fetchPokemons } from "../utils/fetchPokemons";
 
 import { Header } from "../components/Header";
-import { CardInicialUnico } from "../components/CardInicialUnico";
+import { HomeCards } from "../components/HomeCards";
 
 import { Container } from "../styles/pages/Home";
 
@@ -71,14 +71,7 @@ const Home: NextPage<HomeProps> = ({ pokemons }) => {
 
       <Container>
         {pokes.map((pok, index) => (
-          <CardInicialUnico
-            poke={pok}
-            key={index}
-            isAlola={!!pok.name.match(/alola/g)}
-            isGalarian={!!pok.name.match(/galar/g)}
-            isGmax={!!pok.name.match(/gmax/g)}
-            isAlternativeForm={!!pok.name.match(/-/gim)}
-          />
+          <HomeCards poke={pok} key={index} />
         ))}
       </Container>
     </>
@@ -87,12 +80,13 @@ const Home: NextPage<HomeProps> = ({ pokemons }) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const pokemons = await fetchPokemons(0);
 
   return {
     props: {
       pokemons,
     },
+    revalidate: 60 * 60 * 24,
   };
 };

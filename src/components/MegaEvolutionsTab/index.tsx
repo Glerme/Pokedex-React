@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
@@ -5,11 +6,15 @@ import axios from "axios";
 
 import { makeURL, makeURLM } from "../../utils/getPokemonImages";
 
-import { EvolutionProps } from "../../types/PokemonEvolution";
-
 import { MegaEvolutionCardContainer } from "./styles";
 
-export const CardMegaEvolucao: NextPage<EvolutionProps> = ({
+interface EvolutionProps {
+  id: string;
+  name: string;
+  isMega: boolean;
+}
+
+export const MegaEvolutionsTab: NextPage<EvolutionProps> = ({
   id,
   name,
   isMega,
@@ -51,7 +56,7 @@ export const CardMegaEvolucao: NextPage<EvolutionProps> = ({
       {imagemMega ? (
         imagemMega.map((evolutionURL, index) => (
           <div key={index}>
-            <img alt={name} src={evolutionURL} />
+            <Image alt={name} src={evolutionURL} width={400} height={400} />
 
             <p>Mega {name}</p>
             <span>#{id.padStart(3, "0")}</span>

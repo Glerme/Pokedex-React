@@ -22,8 +22,8 @@ export const ContainerCard = styled.a<ColorPropsPrimary>`
 
     transition: all 0.8s;
 
-    & > header {
-      & > h3 {
+    header {
+      h3 {
         color: white;
       }
       p {
@@ -32,35 +32,37 @@ export const ContainerCard = styled.a<ColorPropsPrimary>`
     }
   }
 
-  & > header {
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 
     width: 100%;
-    & > h3 {
+
+    h3 {
       text-transform: capitalize;
       line-height: 1.4;
       color: var(--text-third);
     }
+
     p {
       color: var(--text-secondary);
     }
   }
 
-  & > main {
+  main {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    & > img {
-      width: 200px;
-      height: 200px;
+    .img {
+      object-fit: contain;
+      object-position: 80% 100%;
     }
   }
 
-  & > footer {
+  footer {
     display: flex;
     justify-content: center;
     margin-top: 1rem;

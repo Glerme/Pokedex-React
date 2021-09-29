@@ -11,6 +11,11 @@ const TranslateX = keyframes`
   }
 `;
 
+export const Container = styled.div`
+  min-height: 50%;
+  animation: ${TranslateX} 0.5s ease-in-out;
+`;
+
 export const CardContainer = styled.div`
   display: flex;
   justify-content: center;

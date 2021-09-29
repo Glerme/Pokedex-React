@@ -3,13 +3,17 @@ import { useCallback, useEffect, useState } from "react";
 
 import axios from "axios";
 
-import { AlolaContainerProps } from "../../types/PokemonAlola";
-
 import { makeURL, makeURLAlola } from "../../utils/getPokemonImages";
 
 import { CardContainer } from "./styles";
 
-export const AlolaCard: NextPage<AlolaContainerProps> = ({
+export interface AlolaContainerProps {
+  id: string;
+  name: string;
+  isAlola: boolean;
+}
+
+export const AlolaTab: NextPage<AlolaContainerProps> = ({
   id,
   name,
   isAlola,
@@ -46,28 +50,26 @@ export const AlolaCard: NextPage<AlolaContainerProps> = ({
   }, []);
 
   return (
-    <>
-      <CardContainer>
-        {isAlola ? (
-          <>
-            <img alt={name} src={alolanURLS} />
-            <p>Alolan {name}</p>
-            <span>#{id.padStart(3, "0")}</span>
-          </>
-        ) : (
-          <>
-            {alolanURLS ? (
-              <>
-                <img src={alolanURLS} />
-                <p>Alolan {name}</p>
-                <span>#{id.padStart(3, "0")}</span>
-              </>
-            ) : (
-              <p>Não possui Alolan Form</p>
-            )}
-          </>
-        )}
-      </CardContainer>
-    </>
+    <CardContainer>
+      {isAlola ? (
+        <>
+          <img alt={name} src={alolanURLS} />
+          <p>Alolan {name}</p>
+          <span>#{id.padStart(3, "0")}</span>
+        </>
+      ) : (
+        <>
+          {alolanURLS ? (
+            <>
+              <img src={alolanURLS} />
+              <p>Alolan {name}</p>
+              <span>#{id.padStart(3, "0")}</span>
+            </>
+          ) : (
+            <p>Não possui Alolan Form</p>
+          )}
+        </>
+      )}
+    </CardContainer>
   );
 };

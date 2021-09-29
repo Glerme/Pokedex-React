@@ -36,6 +36,8 @@ export interface PokemonData {
 }
 
 export interface Status {
+  idPokemon: number;
+
   pokemonStatus: PokemonStatusProps[];
   pokemonAbilities: PokemonAbilitiesProps[];
   pokemonData: PokemonData;
