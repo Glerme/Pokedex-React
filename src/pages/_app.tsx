@@ -31,6 +31,9 @@ function MyApp({ Component, pageProps }) {
 
         <meta name="apple-mobile-web-app-status-bar" content="#e5e5e5" />
         <meta name="theme-color" content="#e5e5e5" />
+
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <meta content="yes" name="mobile-web-app-capable" />
       </Head>
 
       <GlobalStyle />

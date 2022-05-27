@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.pokedexreact.twa",
+      "sha256_cert_fingerprints": [
+        "B2:21:F9:FD:2D:14:62:2F:28:B0:18:A3:72:BE:15:BC:8D:15:9F:C6:66:59:39:12:EB:FF:19:D0:5C:6A:50:CB"
+      ]
+    }
+  }
+]
