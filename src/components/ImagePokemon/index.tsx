@@ -17,10 +17,10 @@ export const ImagePokemon: NextPage<ImagePokemonProps> = ({
   const imageUrl = useMemo(
     () =>
       getPokemonImage({
-        name,
+        id: idPokemonSprite,
         fallback: "/images/pokemon-placeholder.png",
       }),
-    [name]
+    [idPokemonSprite]
   );
 
   return (

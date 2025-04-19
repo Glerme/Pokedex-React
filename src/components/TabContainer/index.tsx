@@ -3,32 +3,15 @@ import { useCallback, useState } from "react";
 
 import { Status } from "../../types/PokemonTypes";
 
-import { AlolaTab } from "../AlolaTab";
 import { ProgressBar } from "../ProgressBar";
-import { GalarianTab } from "../GalarianTab";
 import { EvolutionsTab } from "../EvolutionsTab";
-import { GigantamaxTab } from "../GigantamaxTab";
-import { MegaEvolutionsTab } from "../MegaEvolutionsTab";
 
 export const TabContainer: NextPage<Status> = ({
-  idPokemon,
   pokemonAbilities,
   pokemonStatus,
   pokemonData,
-  isAlola,
-  isGmax,
-  isGalarian,
-  isMega,
 }) => {
-  const types = [
-    "Abilities",
-    "Status",
-    "Evolutions",
-    "Mega-Evolution",
-    "Gigantamax",
-    "Alolan",
-    "Galarian",
-  ];
+  const types = ["Abilities", "Status", "Evolutions"];
 
   const [active, setActive] = useState(types[0]);
 
@@ -122,47 +105,7 @@ export const TabContainer: NextPage<Status> = ({
 
         {active === types[2] && (
           <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-5">
-            <EvolutionsTab pokemonData={pokemonData} />
-          </div>
-        )}
-
-        {active === types[3] && (
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-5">
-            <MegaEvolutionsTab
-              id={pokemonData.id.toString()}
-              name={pokemonData.name}
-              isMega={isMega}
-            />
-          </div>
-        )}
-
-        {active === types[4] && (
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-5">
-            <GigantamaxTab
-              isGmax={isGmax}
-              id={pokemonData.id.toString()}
-              name={pokemonData.name}
-            />
-          </div>
-        )}
-
-        {active === types[5] && (
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-5">
-            <AlolaTab
-              id={pokemonData.id.toString()}
-              name={pokemonData.name}
-              isAlola={isAlola}
-            />
-          </div>
-        )}
-
-        {active === types[6] && (
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-5">
-            <GalarianTab
-              id={pokemonData.id.toString()}
-              name={pokemonData.name}
-              isGalar={isGalarian}
-            />
+            <EvolutionsTab idPokemon={pokemonData.id} />
           </div>
         )}
       </div>

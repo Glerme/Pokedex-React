@@ -1,109 +1,109 @@
-import Image from "next/image";
 import { NextPage } from "next";
-
-import { useCallback, useEffect, useState } from "react";
-
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-
-import {
-  Evolucao,
-  PokemonData,
-  PokemonSpecies,
-  PokemonSpeciesProps,
-} from "../../types/PokemonTypes";
-
 import { chainEvo } from "../../utils/chainEvo";
 import { getPokemonImage } from "../../utils/pokemonImageUtils";
+import { PokemonSpeciesProps } from "../../types/PokemonTypes";
+import { TipoPokemon } from "../TipoPokemon";
+import Image from "next/image";
 
-interface EvolutionsData {
-  pokemonData: PokemonData;
+interface EvolutionsTabProps {
+  idPokemon: number;
 }
 
-interface EvolutionCardProps {
-  pokemon: PokemonSpeciesProps;
-}
-
-const EvolutionCard: React.FC<EvolutionCardProps> = ({ pokemon }) => (
-  <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-    <div className="relative w-48 h-48 mb-4">
-      <Image
-        src={getPokemonImage({
-          name: pokemon.name,
-          fallback: "/images/pokemon-placeholder.png",
-        })}
-        width={192}
-        height={192}
-        className="object-contain"
-        alt={pokemon.name}
-        priority={true}
-        quality={75}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
-    </div>
-    <div className="flex items-center gap-2">
-      <p className="text-lg font-medium capitalize text-gray-900">
-        {pokemon.name}
-      </p>
-      <span className="text-sm text-gray-500">#{pokemon.id}</span>
-    </div>
-  </div>
-);
-
-export const EvolutionsTab: NextPage<EvolutionsData> = ({ pokemonData }) => {
-  const [evolutionChain, setEvolutionChain] = useState<PokemonSpeciesProps[]>(
-    []
-  );
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchEvolutionChain = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      const { data: species } = await api.get<PokemonSpecies>(
-        pokemonData.species.url
-      );
-
-      const { data: chain } = await api.get<Evolucao>(
-        species.evolution_chain.url
-      );
-
-      const evolutions = await chainEvo(chain);
-      setEvolutionChain(evolutions);
-    } catch (err) {
-      setError("Failed to load evolution chain");
-      console.error("Evolution chain error:", err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [pokemonData.species.url]);
+export const EvolutionsTab: NextPage<EvolutionsTabProps> = ({ idPokemon }) => {
+  const router = useRouter();
+  const [evolucoes, setEvolucoes] = useState<PokemonSpeciesProps[]>([]);
 
   useEffect(() => {
-    fetchEvolutionChain();
-  }, [fetchEvolutionChain]);
+    const getEvolutions = async () => {
+      try {
+        const { data } = await api.get(`/pokemon-species/${idPokemon}`);
+        const { data: evolutionChain } = await api.get(
+          data.evolution_chain.url
+        );
+        const parsedData = await chainEvo(evolutionChain);
+        setEvolucoes(parsedData);
+      } catch (error) {
+        console.error("Error fetching evolutions:", error);
+      }
+    };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center p-8">
-        <p className="text-lg text-gray-600">Loading evolution chain...</p>
-      </div>
-    );
-  }
+    getEvolutions();
+  }, [idPokemon]);
 
-  if (error) {
-    return (
-      <div className="flex justify-center items-center p-8">
-        <p className="text-lg text-red-600">{error}</p>
-      </div>
-    );
-  }
+  const handlePokemonClick = (id: string) => {
+    router.push(`/pokemon/${id}`);
+  };
 
   return (
-    <div className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {evolutionChain.map((pokemon, index) => (
-          <EvolutionCard key={`${pokemon.id}-${index}`} pokemon={pokemon} />
+    <div className="flex flex-col items-center space-y-8">
+      <div className="w-full max-w-5xl mx-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">Evolution Chain</h2>
+          <span className="text-sm text-gray-500">
+            {evolucoes.length} Evolution{evolucoes.length !== 1 ? "s" : ""}
+          </span>
+        </div>
+      </div>
+
+      <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto">
+        {evolucoes.map((pokemon, index) => (
+          <div
+            key={pokemon.id}
+            onClick={() => handlePokemonClick(pokemon.id)}
+            className="group relative rounded-2xl p-6 transition-all duration-500 cursor-pointer hover:-translate-y-1 overflow-hidden"
+            style={{ backgroundColor: `var(--${pokemon.types[0]})` }}
+          >
+            <div className="absolute top-4 left-4 z-20">
+              <span className="text-sm font-bold bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-2xl text-gray-700">
+                #{index + 1}
+              </span>
+            </div>
+
+            <div className="absolute inset-0 rounded-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent opacity-50" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-black/10 to-transparent opacity-30" />
+            </div>
+
+            <div className="relative mb-5">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-[220px] h-[220px] rounded-full bg-white/10 backdrop-blur-sm animate-pulse" />
+              </div>
+              <div className="relative z-10 transform transition-transform duration-500 group-hover:scale-110 flex items-center justify-center">
+                <Image
+                  src={getPokemonImage({
+                    id: Number(pokemon.id),
+                    fallback: "/images/pokemon-placeholder.png",
+                  })}
+                  alt={pokemon.name}
+                  width={220}
+                  height={220}
+                  className="object-contain drop-shadow-lg transition-all duration-500"
+                  priority
+                />
+              </div>
+            </div>
+
+            <div className="space-y-3 text-center relative z-10">
+              <div className="space-y-1.5">
+                <h3 className="text-xl font-bold capitalize text-white group-hover:text-white/90 transition-colors duration-300">
+                  {pokemon.name}
+                </h3>
+                <span className="inline-block text-sm font-semibold bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white transition-colors duration-300">
+                  #{pokemon.id.padStart(3, "0")}
+                </span>
+              </div>
+
+              <div className="flex justify-center">
+                <TipoPokemon
+                  type1={pokemon.types[0]}
+                  type2={pokemon.types[1]}
+                />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>

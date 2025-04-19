@@ -35,7 +35,7 @@ export const HomeCards = forwardRef<HTMLDivElement, Card>(({ poke }, ref) => {
           <main className="relative w-full aspect-square">
             <Image
               src={getPokemonImage({
-                name: poke.name,
+                id: Number(poke.id),
                 fallback: "/images/pokemon-placeholder.png",
               })}
               alt={poke.name}

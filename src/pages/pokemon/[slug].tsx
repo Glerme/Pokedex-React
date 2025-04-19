@@ -35,11 +35,6 @@ const Pokemon: NextPage<PokemonProps> = ({
   pokemonStatus,
   pokemonAbilities,
 }) => {
-  const isAlola = !!pokemonData.name.match(/alola/g);
-  const isGmax = !!pokemonData.name.match(/gmax/g);
-  const isGalarian = !!pokemonData.name.match(/galar/g);
-  const isMega = !!pokemonData.name.match(/Mega/g);
-
   return (
     <>
       <Head>
@@ -72,10 +67,6 @@ const Pokemon: NextPage<PokemonProps> = ({
                 pokemonAbilities={pokemonAbilities}
                 pokemonStatus={pokemonStatus}
                 pokemonData={pokemonData}
-                isAlola={isAlola}
-                isGmax={isGmax}
-                isGalarian={isGalarian}
-                isMega={isMega}
               />
             </div>
           </div>

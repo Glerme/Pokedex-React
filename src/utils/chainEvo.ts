@@ -17,7 +17,7 @@ export const getPokemonSpecies = async (
 
   const types = await getPokemonTypesAll(String(id));
 
-  const imageURL = getPokemonImage({ name });
+  const imageURL = getPokemonImage({ id });
 
   return {
     id: String(id),

@@ -6,14 +6,22 @@ const nextConfig = {
     API_URL: process.env.API_URL,
   },
   image: {
-    domains: ["https://img.pokemondb.net/", "https://assets.pokemon.com/"],
+    domains: [
+      "https://img.pokemondb.net/",
+      "https://assets.pokemon.com/",
+      "https://raw.githubusercontent.com/",
+    ],
   },
 };
 
 module.exports = {
   nextConfig,
   images: {
-    domains: ["img.pokemondb.net", "assets.pokemon.com"],
+    domains: [
+      "img.pokemondb.net",
+      "assets.pokemon.com",
+      "raw.githubusercontent.com",
+    ],
   },
 };
 
