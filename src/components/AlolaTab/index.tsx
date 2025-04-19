@@ -1,11 +1,10 @@
 import { NextPage } from "next";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
 import axios from "axios";
 
-import { makeURL, makeURLAlola } from "../../utils/getPokemonImages";
-
-import { CardContainer } from "./styles";
+import { getPokemonImage } from "../../utils/pokemonImageUtils";
 
 export interface AlolaContainerProps {
   id: string;
@@ -22,18 +21,20 @@ export const AlolaTab: NextPage<AlolaContainerProps> = ({
 
   const getAlolan = useCallback(async () => {
     if (isAlola) {
-      const imagesURLs = makeURL(name);
+      const imagesURLs = getPokemonImage({ name, form: "alola" });
       setAlolanURLS(imagesURLs);
 
       return;
     } else {
-      const imagesURLs = makeURLAlola(name);
+      const imagesURLs = getPokemonImage({ name, form: "alola" });
 
       try {
         const { status } = await axios.get(imagesURLs);
 
         if (status === 404) {
-          const imagePokemonNormal = makeURL(id.padStart(3, "0"));
+          const imagePokemonNormal = getPokemonImage({
+            name: id.padStart(3, "0"),
+          });
           setAlolanURLS(imagePokemonNormal);
           return;
         }
@@ -50,26 +51,58 @@ export const AlolaTab: NextPage<AlolaContainerProps> = ({
   }, []);
 
   return (
-    <CardContainer>
+    <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
       {isAlola ? (
         <>
-          <img alt={name} src={alolanURLS} />
-          <p>Alolan {name}</p>
-          <span>#{id.padStart(3, "0")}</span>
+          <div className="relative w-64 h-64 mb-4">
+            <Image
+              src={alolanURLS}
+              alt={`Alolan ${name}`}
+              width={256}
+              height={256}
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <p className="text-lg font-medium capitalize text-gray-900">
+              Alolan {name}
+            </p>
+            <span className="text-sm text-gray-500">
+              #{id.padStart(3, "0")}
+            </span>
+          </div>
         </>
       ) : (
         <>
           {alolanURLS ? (
             <>
-              <img src={alolanURLS} />
-              <p>Alolan {name}</p>
-              <span>#{id.padStart(3, "0")}</span>
+              <div className="relative w-64 h-64 mb-4">
+                <Image
+                  src={alolanURLS}
+                  alt={`Alolan ${name}`}
+                  width={256}
+                  height={256}
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <p className="text-lg font-medium capitalize text-gray-900">
+                  Alolan {name}
+                </p>
+                <span className="text-sm text-gray-500">
+                  #{id.padStart(3, "0")}
+                </span>
+              </div>
             </>
           ) : (
-            <p>Não possui Alolan Form</p>
+            <p className="text-lg text-gray-600">Não possui Alolan Form</p>
           )}
         </>
       )}
-    </CardContainer>
+    </div>
   );
 };

@@ -1,7 +1,7 @@
 import { api } from "../services/api";
 import { Evolucao } from "../types/PokemonTypes";
-import { getPokemonImage } from "./getPokemonImages";
 import { PokemonSpeciesProps } from "../types/PokemonTypes";
+import { getPokemonImage } from "./pokemonImageUtils";
 
 const getPokemonTypesAll = async (id: string) => {
   const { data } = await api.get(`/pokemon/${id}`);
@@ -17,7 +17,7 @@ export const getPokemonSpecies = async (
 
   const types = await getPokemonTypesAll(String(id));
 
-  const imageURL = getPokemonImage(id);
+  const imageURL = getPokemonImage({ name });
 
   return {
     id: String(id),

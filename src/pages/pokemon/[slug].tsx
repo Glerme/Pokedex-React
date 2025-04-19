@@ -8,7 +8,6 @@ import {
 
 import { api } from "../../services/api";
 
-import { getPokemonImage } from "../../utils/getPokemonImages";
 import { formatAbilities } from "../../utils/formatAbilities";
 
 import {
@@ -23,8 +22,6 @@ import { NomePokemon } from "../../components/NomePokemon";
 import { TipoPokemon } from "../../components/TipoPokemon";
 import { ImagePokemon } from "../../components/ImagePokemon";
 import { TabContainer } from "../../components/TabContainer";
-
-import { Container } from "./styles";
 
 interface PokemonProps {
   pokemonData: PokemonData;
@@ -52,32 +49,38 @@ const Pokemon: NextPage<PokemonProps> = ({
         </title>
       </Head>
       <Header />
-      {pokemonData && (
-        <>
-          <Container>
-            <NomePokemon name={pokemonData.name} id={pokemonData.id} />
-            <ImagePokemon
-              idPokemonSprite={pokemonData.id}
-              colorPkm={pokemonData.types[0].type.name}
-              name={pokemonData.name}
-            />
-            <TipoPokemon
-              type1={pokemonData.types[0].type.name}
-              type2={pokemonData.types[1]?.type.name}
-            />
-          </Container>
-          <TabContainer
-            idPokemon={pokemonData.id}
-            pokemonAbilities={pokemonAbilities}
-            pokemonStatus={pokemonStatus}
-            pokemonData={pokemonData}
-            isAlola={isAlola}
-            isGmax={isGmax}
-            isGalarian={isGalarian}
-            isMega={isMega}
-          />
-        </>
-      )}
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        {pokemonData && (
+          <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+              <NomePokemon name={pokemonData.name} id={pokemonData.id} />
+
+              <div className="flex flex-col items-center gap-6 sm:gap-8">
+                <ImagePokemon
+                  idPokemonSprite={pokemonData.id}
+                  colorPkm={pokemonData.types[0].type.name}
+                  name={pokemonData.name}
+                />
+                <TipoPokemon
+                  type1={pokemonData.types[0].type.name}
+                  type2={pokemonData.types[1]?.type.name}
+                />
+              </div>
+
+              <TabContainer
+                idPokemon={pokemonData.id}
+                pokemonAbilities={pokemonAbilities}
+                pokemonStatus={pokemonStatus}
+                pokemonData={pokemonData}
+                isAlola={isAlola}
+                isGmax={isGmax}
+                isGalarian={isGalarian}
+                isMega={isMega}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

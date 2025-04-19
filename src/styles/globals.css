@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+:root {
+  --primary: #dc2626;
+  --secondary: #2563eb;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-third: #6b7280;
+
+  /* Pokemon Type Colors */
+  --normal: #a8a878;
+  --fire: #f08030;
+  --water: #6890f0;
+  --electric: #f8d030;
+  --grass: #78c850;
+  --ice: #98d8d8;
+  --fighting: #c03028;
+  --poison: #a040a0;
+  --ground: #e0c068;
+  --flying: #a890f0;
+  --psychic: #f85888;
+  --bug: #a8b820;
+  --rock: #b8a038;
+  --ghost: #705898;
+  --dragon: #7038f8;
+  --dark: #705848;
+  --steel: #b8b8d0;
+  --fairy: #ee99ac;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-text-primary;
+  }
+}
+
+@layer components {
+  .pokemon-card {
+    @apply rounded-2xl p-4 shadow-md transition-transform hover:scale-105;
+  }
+
+  .pokemon-type-badge {
+    @apply px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm flex items-center gap-1;
+  }
+
+  .pokemon-type-icon {
+    @apply w-4 h-4;
+  }
+}
+
+@layer utilities {
+  .shimmer-gradient {
+    @apply bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%];
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}

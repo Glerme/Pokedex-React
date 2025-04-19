@@ -4,9 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import axios from "axios";
 
-import { makeURL, makeURLM } from "../../utils/getPokemonImages";
-
-import { MegaEvolutionCardContainer } from "./styles";
+import { getPokemonImage } from "../../utils/pokemonImageUtils";
 
 interface EvolutionProps {
   id: string;
@@ -23,12 +21,12 @@ export const MegaEvolutionsTab: NextPage<EvolutionProps> = ({
 
   const getMega = useCallback(async () => {
     if (isMega) {
-      const imagesURLs = makeURL(name);
+      const imagesURLs = getPokemonImage({ name, form: "mega" });
       setImagemMega([imagesURLs]);
 
       return;
     } else {
-      const imagesURLs = makeURLM(name);
+      const imagesURLs = getPokemonImage({ name, form: "mega" });
 
       try {
         const { status } = await axios.get(imagesURLs[0]);
@@ -52,19 +50,37 @@ export const MegaEvolutionsTab: NextPage<EvolutionProps> = ({
   }, []);
 
   return (
-    <MegaEvolutionCardContainer>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {imagemMega ? (
         imagemMega.map((evolutionURL, index) => (
-          <div key={index}>
-            <Image alt={name} src={evolutionURL} width={400} height={400} />
+          <div
+            key={index}
+            className="flex flex-col items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          >
+            <div className="relative w-48 h-48 mb-4">
+              <Image
+                alt={name}
+                src={evolutionURL}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority
+              />
+            </div>
 
-            <p>Mega {name}</p>
-            <span>#{id.padStart(3, "0")}</span>
+            <div className="flex items-center gap-2">
+              <p className="text-lg font-medium capitalize text-gray-900">
+                Mega {name}
+              </p>
+              <span className="text-sm text-gray-500">
+                #{id.padStart(3, "0")}
+              </span>
+            </div>
           </div>
         ))
       ) : (
-        <p>Nenhuma Mega Evolução.</p>
+        <p className="text-lg text-gray-600">Nenhuma Mega Evolução.</p>
       )}
-    </MegaEvolutionCardContainer>
+    </div>
   );
 };

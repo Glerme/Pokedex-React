@@ -52,7 +52,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Typescript](https://www.typescriptlang.org)
 - [Next.Js](https://nextjs.org)
 - [React Js](https://pt-br.reactjs.org)
-- [Styled Components](https://styled-components.com)
+- [Tailwind CSS](https://tailwindcss.com)
 
 <br>
 

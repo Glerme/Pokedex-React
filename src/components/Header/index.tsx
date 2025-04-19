@@ -9,8 +9,6 @@ import { MdArrowBack } from "react-icons/md";
 
 import { SearchInput } from "../SearchInput";
 
-import { HeaderContainer } from "./styles";
-
 interface SearchProps {
   nomePokemon: string;
 }
@@ -37,20 +35,30 @@ export const Header: NextPage = () => {
   }, []);
 
   return (
-    <HeaderContainer>
-      <section>
-        {back && (
-          <div onClick={() => router.push("/")}>
-            <MdArrowBack size={40} />
-            <p>Voltar</p>
-          </div>
-        )}
-        <img src="/logo.svg" alt="Logo" srcSet="/logo.svg" />
-      </section>
+    <header className="w-full bg-white shadow-md">
+      <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <section className="flex items-center gap-8">
+          {back && (
+            <div
+              onClick={() => router.push("/")}
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-800 cursor-pointer transition-colors"
+            >
+              <MdArrowBack size={40} />
+              <p className="text-lg">Voltar</p>
+            </div>
+          )}
+          <img
+            src="/logo.svg"
+            alt="Logo"
+            srcSet="/logo.svg"
+            className="h-12 w-auto"
+          />
+        </section>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <SearchInput name="nomePokemon" />
-      </Form>
-    </HeaderContainer>
+        <Form ref={formRef} onSubmit={handleSubmit} className="w-full md:w-96">
+          <SearchInput name="nomePokemon" />
+        </Form>
+      </div>
+    </header>
   );
 };

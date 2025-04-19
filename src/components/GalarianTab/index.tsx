@@ -1,10 +1,9 @@
 import axios from "axios";
 import { NextPage } from "next";
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
-import { makeURL, makeURLGalar } from "../../utils/getPokemonImages";
-
-import { CardContainer } from "./styles";
+import { getPokemonImage } from "../../utils/pokemonImageUtils";
 
 interface GalarContainerProps {
   id: string;
@@ -21,18 +20,20 @@ export const GalarianTab: NextPage<GalarContainerProps> = ({
 
   const getGalar = useCallback(async () => {
     if (isGalar) {
-      const imagesURLs = makeURL(name);
+      const imagesURLs = getPokemonImage({ name, form: "galar" });
       setGalarUrl(imagesURLs);
 
       return;
     } else {
-      const imagesURLs = makeURLGalar(name);
+      const imagesURLs = getPokemonImage({ name, form: "galar" });
 
       try {
         const { status } = await axios.get(imagesURLs);
 
         if (status === 404) {
-          const imagePokemonNormal = makeURL(id.padStart(3, "0"));
+          const imagePokemonNormal = getPokemonImage({
+            name: id.padStart(3, "0"),
+          });
           setGalarUrl(imagePokemonNormal);
           return;
         }
@@ -49,18 +50,32 @@ export const GalarianTab: NextPage<GalarContainerProps> = ({
   }, []);
 
   return (
-    <>
-      <CardContainer>
-        {galarUrl ? (
-          <>
-            <img src={galarUrl} />
-            <p>Galarian {name}</p>
-            <span>#{id.padStart(3, "0")}</span>
-          </>
-        ) : (
-          <p>Não possui Galarian Form</p>
-        )}
-      </CardContainer>
-    </>
+    <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+      {galarUrl ? (
+        <>
+          <div className="relative w-64 h-64 mb-4">
+            <Image
+              src={galarUrl}
+              alt={`Galarian ${name}`}
+              width={256}
+              height={256}
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <p className="text-lg font-medium capitalize text-gray-900">
+              Galarian {name}
+            </p>
+            <span className="text-sm text-gray-500">
+              #{id.padStart(3, "0")}
+            </span>
+          </div>
+        </>
+      ) : (
+        <p className="text-lg text-gray-600">Não possui Galarian Form</p>
+      )}
+    </div>
   );
 };

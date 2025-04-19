@@ -1,59 +1,37 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { GetStaticProps, NextPage } from "next";
 
-import { useLoader } from "../hooks/loader";
-
 import { PokemonSpeciesProps } from "../types/PokemonTypes";
-
 import { fetchPokemons } from "../utils/fetchPokemons";
+import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 
 import { Header } from "../components/Header";
 import { HomeCards } from "../components/HomeCards";
-
-import { Container } from "../styles/pages/Home";
+import { PokemonCardSkeleton } from "../components/PokemonCardSkeleton";
 
 interface HomeProps {
-  pokemons: PokemonSpeciesProps[];
+  initialPokemons: PokemonSpeciesProps[];
 }
 
-const Home: NextPage<HomeProps> = ({ pokemons }) => {
-  const [pokes, setPokes] = useState<PokemonSpeciesProps[]>(pokemons);
-  const [pokePerPage, setPokePerPage] = useState(10);
-  const [scrollPosition, setScrollPosition] = useState(0);
+const ITEMS_PER_PAGE = 25;
 
-  const handleScroll = async () => {
-    const position = window.pageYOffset;
-    const maxTop = document.body.scrollHeight;
+const Home: NextPage<HomeProps> = ({ initialPokemons }) => {
+  const [pokemons, setPokemons] =
+    useState<PokemonSpeciesProps[]>(initialPokemons);
 
-    const valorNovo = maxTop - position;
+  const loadMorePokemons = useCallback(async () => {
+    const newPokemons = await fetchPokemons(pokemons.length);
+    setPokemons((prev) => [...prev, ...newPokemons]);
+  }, [pokemons.length]);
 
-    setScrollPosition(valorNovo);
-
-    if (position > valorNovo) {
-      try {
-        const newPokemons = await fetchPokemons(pokes.length);
-        setPokes([...pokes, ...newPokemons]);
-      } catch (error) {
-        console.error(error);
-      }
+  const { isLoading, error, observerRef } = useInfiniteScroll(
+    loadMorePokemons,
+    {
+      threshold: 0.5,
+      rootMargin: "100px",
     }
-    setScrollPosition(position);
-    const perPage = pokePerPage;
-    setPokePerPage(perPage + 10);
-  };
-
-  useEffect(() => {
-    window.addEventListener("wheel", handleScroll);
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("touchmove", handleScroll);
-
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("scroll", handleScroll);
-      window.addEventListener("touchmove", handleScroll);
-    };
-  }, [scrollPosition]);
+  );
 
   return (
     <>
@@ -62,11 +40,39 @@ const Home: NextPage<HomeProps> = ({ pokemons }) => {
       </Head>
       <Header />
 
-      <Container>
-        {pokes.map((pok, index) => (
-          <HomeCards poke={pok} key={index} />
-        ))}
-      </Container>
+      <main className="max-w-7xl mx-auto p-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {pokemons.map((pokemon, index) => (
+            <HomeCards
+              key={`${pokemon.id}-${index}`}
+              poke={pokemon}
+              ref={index === pokemons.length - 1 ? observerRef : undefined}
+            />
+          ))}
+        </div>
+
+        {isLoading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6">
+            {[...Array(6)].map((_, index) => (
+              <PokemonCardSkeleton key={index} />
+            ))}
+          </div>
+        )}
+
+        {error && (
+          <div className="flex flex-col items-center justify-center gap-4 p-8 text-center">
+            <p className="text-gray-600 text-lg">
+              Error loading Pokemon. Please try again.
+            </p>
+            <button
+              onClick={loadMorePokemons}
+              className="px-6 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+      </main>
     </>
   );
 };
@@ -74,12 +80,22 @@ const Home: NextPage<HomeProps> = ({ pokemons }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pokemons = await fetchPokemons(0);
+  try {
+    const initialPokemons = await fetchPokemons(0);
 
-  return {
-    props: {
-      pokemons,
-    },
-    revalidate: 60 * 60 * 24,
-  };
+    return {
+      props: {
+        initialPokemons,
+      },
+      revalidate: 60 * 60 * 24, // 24 hours
+    };
+  } catch (error) {
+    console.error("Error fetching initial Pokemon:", error);
+    return {
+      props: {
+        initialPokemons: [],
+      },
+      revalidate: 60, // Try again in 1 minute if there was an error
+    };
+  }
 };

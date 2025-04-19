@@ -1,12 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
-import Router from "next/dist/next-server/lib/router/router";
+import "../styles/globals.css";
 
 import { PageLoader } from "../components/PageLoader";
 
 import { LoaderProvider } from "../hooks/loader";
-
-import GlobalStyle from "../styles/global";
+import { Router } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const [isPageLoader, setIsPageLoader] = useState(false);
@@ -36,7 +35,6 @@ function MyApp({ Component, pageProps }) {
         <meta content="yes" name="mobile-web-app-capable" />
       </Head>
 
-      <GlobalStyle />
       {isPageLoader && <PageLoader />}
 
       <LoaderProvider>

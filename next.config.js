@@ -6,10 +6,7 @@ const nextConfig = {
     API_URL: process.env.API_URL,
   },
   image: {
-    domains: [
-      "https://img.pokemondb.net/artwork/",
-      "https://assets.pokemon.com/",
-    ],
+    domains: ["https://img.pokemondb.net/", "https://assets.pokemon.com/"],
   },
 };
 
