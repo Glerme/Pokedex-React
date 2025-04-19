@@ -15,10 +15,12 @@ interface EvolutionsTabProps {
 export const EvolutionsTab: NextPage<EvolutionsTabProps> = ({ idPokemon }) => {
   const router = useRouter();
   const [evolucoes, setEvolucoes] = useState<PokemonSpeciesProps[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getEvolutions = async () => {
       try {
+        setLoading(true);
         const { data } = await api.get(`/pokemon-species/${idPokemon}`);
         const { data: evolutionChain } = await api.get(
           data.evolution_chain.url
@@ -27,6 +29,8 @@ export const EvolutionsTab: NextPage<EvolutionsTabProps> = ({ idPokemon }) => {
         setEvolucoes(parsedData);
       } catch (error) {
         console.error("Error fetching evolutions:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -36,6 +40,40 @@ export const EvolutionsTab: NextPage<EvolutionsTabProps> = ({ idPokemon }) => {
   const handlePokemonClick = (id: string) => {
     router.push(`/pokemon/${id}`);
   };
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 space-y-4">
+        <div className="w-16 h-16 rounded-full border-4 border-primary border-t-transparent animate-spin" />
+        <p className="text-gray-500 animate-pulse">Loading evolutions...</p>
+      </div>
+    );
+  }
+
+  if (!evolucoes.length) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 space-y-6">
+        <div className="relative w-32 h-32">
+          <Image
+            src="/images/pokemon-placeholder.png"
+            alt="No evolutions"
+            width={128}
+            height={128}
+            className="object-contain opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-radial from-white/5 via-transparent to-transparent animate-pulse" />
+        </div>
+        <div className="text-center space-y-2">
+          <h3 className="text-xl font-bold text-gray-900">
+            No Evolutions Found
+          </h3>
+          <p className="text-gray-500">
+            This Pokémon doesn't have any evolutions in its chain.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center space-y-8">

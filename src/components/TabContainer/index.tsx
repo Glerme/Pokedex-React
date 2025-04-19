@@ -53,24 +53,34 @@ export const TabContainer: NextPage<Status> = ({
             {pokemonAbilities?.map(({ key, abilities }) => (
               <div
                 key={key}
-                className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
-                    {key}
-                  </h3>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">
+                      {key}
+                    </h3>
+                  </div>
                   <div className="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent" />
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {abilities.map((ability, index) => (
                     <div
                       key={index}
-                      className="group relative overflow-hidden bg-white/50 rounded-lg p-4 backdrop-blur-sm transition-all duration-300 hover:bg-white/70 hover:shadow-md"
+                      className="group relative overflow-hidden rounded-xl bg-white/50 p-5 backdrop-blur-sm transition-all duration-300 hover:bg-white hover:shadow-md"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                      <p className="relative text-base text-gray-600 leading-relaxed">
-                        {ability}
-                      </p>
+                      <div className="relative space-y-2">
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-medium text-gray-900">
+                            Ability {index + 1}
+                          </h4>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed pl-3.5 whitespace-pre-wrap">
+                          {ability}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -84,15 +94,21 @@ export const TabContainer: NextPage<Status> = ({
             {pokemonStatus?.map((status, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-5 space-y-3"
+                className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="flex justify-between items-center">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">
-                    {status.key}
-                  </h3>
-                  <span className="text-base sm:text-lg font-semibold text-gray-700">
-                    {status.value}
-                  </span>
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-2 h-2 rounded-full"
+                      style={{
+                        backgroundColor: getProgressColor(status.value),
+                      }}
+                    />
+                    <h3 className="text-lg font-bold text-gray-900">
+                      {status.key}
+                    </h3>
+                  </div>
+                  <div className="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent ml-4" />
                 </div>
                 <ProgressBar
                   valueStatus={status.value}

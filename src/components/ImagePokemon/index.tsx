@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { getPokemonImage } from "../../utils/pokemonImageUtils";
 
 interface ImagePokemonProps {
@@ -14,6 +14,9 @@ export const ImagePokemon: NextPage<ImagePokemonProps> = ({
   colorPkm,
   name,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const imageUrl = useMemo(
     () =>
       getPokemonImage({
@@ -35,22 +38,39 @@ export const ImagePokemon: NextPage<ImagePokemonProps> = ({
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-3/4 h-3/4 rounded-full bg-white/10 backdrop-blur-sm animate-pulse">
+          <div
+            className={`w-3/4 h-3/4 rounded-full bg-white/10 backdrop-blur-sm ${
+              isLoading ? "animate-pulse" : ""
+            }`}
+          >
             <div className="absolute inset-0 rounded-full bg-gradient-radial from-white/20 via-transparent to-transparent animate-ping" />
           </div>
         </div>
 
         <div className="relative w-full h-full z-10 flex items-center justify-center">
           <div className="transform transition-all duration-500 group-hover:scale-110 will-change-transform">
-            <Image
-              src={imageUrl}
-              alt={`${name} pokemon`}
-              width={300}
-              height={300}
-              className="object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] motion-safe:animate-float"
-              priority={idPokemonSprite <= 12}
-              quality={90}
-            />
+            {error ? (
+              <div className="w-[300px] h-[300px] flex items-center justify-center">
+                <span className="text-white/50 text-lg">Pokemon not found</span>
+              </div>
+            ) : (
+              <Image
+                src={imageUrl}
+                alt={`${name} pokemon`}
+                width={300}
+                height={300}
+                className={`object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] motion-safe:animate-float ${
+                  isLoading ? "opacity-0" : "opacity-100"
+                }`}
+                priority={idPokemonSprite <= 12}
+                quality={90}
+                onLoad={() => setIsLoading(false)}
+                onError={() => {
+                  setError(true);
+                  setIsLoading(false);
+                }}
+              />
+            )}
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { GetStaticProps, NextPage } from "next";
 
@@ -7,7 +8,7 @@ import { fetchPokemons } from "../utils/fetchPokemons";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 
 import { Header } from "../components/Header";
-import { HomeCards } from "../components/HomeCards";
+import { ImagePokemon } from "../components/ImagePokemon";
 import { PokemonCardSkeleton } from "../components/PokemonCardSkeleton";
 
 interface HomeProps {
@@ -17,6 +18,7 @@ interface HomeProps {
 const ITEMS_PER_PAGE = 25;
 
 const Home: NextPage<HomeProps> = ({ initialPokemons }) => {
+  const router = useRouter();
   const [pokemons, setPokemons] =
     useState<PokemonSpeciesProps[]>(initialPokemons);
 
@@ -33,6 +35,13 @@ const Home: NextPage<HomeProps> = ({ initialPokemons }) => {
     }
   );
 
+  const handlePokemonClick = useCallback(
+    (id: string) => {
+      router.push(`/pokemon/${id}`);
+    },
+    [router]
+  );
+
   return (
     <>
       <Head>
@@ -43,11 +52,18 @@ const Home: NextPage<HomeProps> = ({ initialPokemons }) => {
       <main className="max-w-7xl mx-auto p-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
           {pokemons.map((pokemon, index) => (
-            <HomeCards
+            <div
               key={`${pokemon.id}-${index}`}
-              poke={pokemon}
               ref={index === pokemons.length - 1 ? observerRef : undefined}
-            />
+              onClick={() => handlePokemonClick(pokemon.id)}
+              className="cursor-pointer"
+            >
+              <ImagePokemon
+                idPokemonSprite={Number(pokemon.id)}
+                colorPkm={pokemon.types[0]}
+                name={pokemon.name}
+              />
+            </div>
           ))}
         </div>
 

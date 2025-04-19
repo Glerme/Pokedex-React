@@ -5,6 +5,7 @@ import {
   GetStaticProps,
   NextPage,
 } from "next";
+import { useRouter } from "next/router";
 
 import { api } from "../../services/api";
 
@@ -81,48 +82,43 @@ export default Pokemon;
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: true,
   };
 };
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const { slug } = ctx.params;
+    const { data } = await api.get(`/pokemon/${params?.slug}`);
+    const { data: species } = await api.get(data.species.url);
 
-    const { data: pokemonData } = await api.get<PokemonData>(
-      `/pokemon/${slug}`
-    );
-
-    const statusKeys = [...new Set(pokemonData.stats.map((s) => s.stat.name))];
+    const statusKeys = [
+      ...new Set(data.stats.map((s) => s.stat.name)),
+    ] as string[];
 
     const parsedStatus = statusKeys.map((key) => {
       return {
         key: key.toUpperCase(),
-        value: pokemonData.stats.filter((s) => s.stat.name === key)[0]
-          .base_stat,
+        value: data.stats.filter((s) => s.stat.name === key)[0].base_stat,
       };
     });
 
-    const formatedAbilities = formatAbilities(pokemonData.abilities);
-
-    if (!pokemonData) {
-      return {
-        props: {},
-      };
-    }
+    const formatedAbilities = formatAbilities(data.abilities);
 
     return {
       props: {
-        pokemonData,
+        pokemonData: data,
         pokemonStatus: parsedStatus,
         pokemonAbilities: formatedAbilities,
+        species,
       },
       revalidate: 60 * 60 * 24,
     };
   } catch (error) {
-    console.error(error);
     return {
-      props: {},
+      redirect: {
+        destination: `/pokemon-not-found?name=${params?.slug}`,
+        permanent: false,
+      },
     };
   }
 };

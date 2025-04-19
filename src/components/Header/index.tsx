@@ -21,7 +21,6 @@ export const Header: NextPage = () => {
   const handleSubmit = useCallback(async (input: SearchProps) => {
     try {
       const slug = input.nomePokemon.toLowerCase();
-
       router.push(`/pokemon/${slug}`);
     } catch (error) {
       console.error(error);
@@ -38,21 +37,22 @@ export const Header: NextPage = () => {
     <header className="w-full bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <section className="flex items-center gap-8">
-          {back && (
+          {back ? (
             <div
               onClick={() => router.push("/")}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-800 cursor-pointer transition-colors"
             >
               <MdArrowBack size={40} />
-              <p className="text-lg">Voltar</p>
+              <p className="text-lg">Go back</p>
             </div>
+          ) : (
+            <img
+              src="/logo.svg"
+              alt="Logo"
+              srcSet="/logo.svg"
+              className="h-12 w-auto"
+            />
           )}
-          <img
-            src="/logo.svg"
-            alt="Logo"
-            srcSet="/logo.svg"
-            className="h-12 w-auto"
-          />
         </section>
 
         <Form ref={formRef} onSubmit={handleSubmit} className="w-full md:w-96">
